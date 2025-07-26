@@ -29,3 +29,14 @@ h2 {
   text-align: center;
   margin-bottom: 1rem;
 }
+      .nav-links {
+        display: none;
+      }
+
+      .nav-style{
+
+display: flex;
+justify-items: center;
+
+
+      }
