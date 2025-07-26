@@ -20,77 +20,45 @@
 
 
 
+  <!-- ✅ Navigation -->
+  <section class="mx-4 md:mx-20">
+    <nav class="flex items-center justify-between pt-10 pb-5 relative">
+      <!-- Left: Logo -->
+      <div class="flex items-center space-x-4">
+        <button><i class="fa-solid fa-paw text-xl"></i></button>
+        <h1 class="text-xl font-bold">Peddy</h1>
+      </div>
 
-    <section class="mx-4 md:mx-20">
-        <nav class="flex items-center justify-between pt-10 pb-5 relative">
-          <!-- Left: Logo -->
-          <div class="flex items-center space-x-4">
-            <button><i class="fa-solid fa-paw text-xl"></i></button>
-            <h1 class="text-xl font-bold">Peddy</h1>
-          </div>
-    
-          <!-- Middle: Desktop Nav -->
-          <div class="nav-links hidden md:flex items-center space-x-6">
-            <button>Home</button>
-            <button>Shop</button>
-            <button>Contact</button>
-          </div>
-    
-          <!-- Right: Hamburger + Mobile Menu -->
-          <div class="relative flex items-center space-x-4 md:hidden">
-            <!-- Hamburger Button -->
-            <button class="text-2xl" id="menuToggle">
-              <i class="fa-solid fa-bars"></i>
-            </button>
-    
-            <!-- Mobile Dropdown Menu -->
-            <div class="mobile-menu absolute right-0 top-full mt-2 w-40 bg-white px-4 py-4 shadow-md rounded-md hidden z-50" id="mobileMenu">
-              <div class="grid gap-2">
-                <button class="hover:bg-gray-100 py-2 rounded">Home</button>
-                <button class="hover:bg-gray-100 py-2 rounded">Shop</button>
-                <button class="hover:bg-gray-100 py-2 rounded">Contact</button>
-              </div>
-              <button class="hover:bg-gray-100 py-2 mt-2 rounded flex items-center gap-1">
-                <i class="fa-regular fa-user"></i> Account
-              </button>
-            </div>
-          </div>
-    
-          <!-- Right Desktop: Account icon -->
-          <div class="hidden md:block">
-            <button><i class="fa-regular fa-user text-xl"></i></button>
-          </div>
-        </nav>
-      </section>
+      <!-- Middle: Desktop Nav -->
+      <div class="nav-links hidden md:flex items-center space-x-6">
+        <button>Home</button>
+        <button>Shop</button>
+        <button>Contact</button>
+      </div>
 
-      <section>
-        <div class="center-container">
-          <p>Bringing Families Together</p>
-          <h1 class="boldtext">
-            <span>Your Path to Adoption</span>
-            <span>Starts Here</span>
-          </h1>
+      <!-- Right: Hamburger (Mobile only) -->
+      <div class="relative flex items-center space-x-4 md:hidden">
+        <button class="text-2xl" id="menuToggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="mobile-menu absolute right-0 top-full mt-2 w-40 bg-white px-4 py-4 shadow-md rounded-md hidden z-50" id="mobileMenu">
+          <div class="grid gap-2">
+            <button class="hover:bg-gray-100 py-2 rounded">Home</button>
+            <button class="hover:bg-gray-100 py-2 rounded">Shop</button>
+            <button class="hover:bg-gray-100 py-2 rounded">Contact</button>
+          </div>
+          <button class="hover:bg-gray-100 py-2 mt-2 rounded flex items-center gap-1">
+            <i class="fa-regular fa-user"></i> Account
+          </button>
         </div>
-        <p class="p-5 text2">
-          <span>It is a long established fact that a reader will be distracted by the readable content of a page when looking</span>
-          <span>at its layout. The point of using Lorem Ipsum is that it has a.</span>
-        </p>
-        <div class="btn">
-          <a href="#scroller">
-            <button id="viewMoreBtn">View More</button>
-          </a>
-        </div>
-        <div class="m-4 p-8 md:p-16 flex justify-center items-center">
-          <img src="./assets/Puppy-and-Kitten-Sleeping-1000x500.jpg" alt="" class="w-full max-w-4xl"/>
-        </div>
-        <div class="flex items-center justify-center flex-col" id="adoptSection">
-          <h1 id="scroller" class="font-bold text-2xl">Adopt Your Best Friend</h1>
-          <h3 class="px-4 md:px-[450px] text-center py-8">
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
-          </h3>
-        </div>
-      </section>
+      </div>
 
+      <!-- Right Desktop: Account icon -->
+      <div class="hidden md:block">
+        <button><i class="fa-regular fa-user text-xl"></i></button>
+      </div>
+    </nav>
+  </section>
 
   <script src="script.js" defer></script>
 </body>
