@@ -1,57 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pawfect</title>
-  <link rel="icon" type="image/png" href="./assets/TitleLogo.jpg" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
-<body class="bg-white text-gray-800">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pawfect</title>
+    <link rel="icon" type="image/png" href="./assets/TitleLogo.jpg" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
 
-  <!-- ✅ Navbar -->
-  <section class="mx-4 md:mx-20">
-    <nav class="flex items-center justify-between pt-10 pb-5 relative">
-      <!-- Logo -->
-      <div class="flex items-center space-x-4">
-        <button><i class="fa-solid fa-paw text-xl"></i></button>
-        <h1 class="text-xl font-bold">Peddy</h1>
-      </div>
-
-      <!-- Desktop Menu -->
-      <div class="nav-links hidden md:flex items-center space-x-6">
-        <button>Home</button>
-        <button>Shop</button>
-        <button>Contact</button>
-      </div>
-
-      <!-- Mobile Menu Toggle -->
-      <div class="relative flex items-center space-x-4 md:hidden">
-        <button class="text-2xl" id="menuToggle">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <div class="mobile-menu absolute right-0 top-full mt-2 w-40 bg-white px-4 py-4 shadow-md rounded-md hidden z-50" id="mobileMenu">
-          <div class="grid gap-2">
-            <button class="hover:bg-gray-100 py-2 rounded">Home</button>
-            <button class="hover:bg-gray-100 py-2 rounded">Shop</button>
-            <button class="hover:bg-gray-100 py-2 rounded">Contact</button>
-            <button class="hover:bg-gray-100 py-2 mt-2 rounded flex items-center gap-1">
-              <i class="fa-regular fa-user"></i> Account
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Account Icon (Desktop) -->
-      <div class="hidden md:block">
-        <button><i class="fa-regular fa-user text-xl"></i></button>
-      </div>
-    </nav>
-  </section>
-
-  <!-- ✅ Hero Section -->
   <section>
     <div class="center-container">
       <p>Bringing Families Together</p>
@@ -61,8 +22,13 @@
       </h1>
     </div>
     <p class="p-5 text2">
-      <span>It is a long established fact that a reader will be distracted by the readable content of a page when looking</span>
-      <span>at its layout. The point of using Lorem Ipsum is that it has a.</span>
+      <span
+        >It is a long established fact that a reader will be distracted by the
+        readable content of a page when looking</span
+      >
+      <span
+        >at its layout. The point of using Lorem Ipsum is that it has a.</span
+      >
     </p>
     <div class="btn">
       <a href="#scroller">
@@ -70,70 +36,168 @@
       </a>
     </div>
     <div class="m-4 p-8 md:p-16 flex justify-center items-center">
-      <img src="./assets/Puppy-and-Kitten-Sleeping-1000x500.jpg" alt="" class="w-full max-w-4xl"/>
+      <img
+        src="./assets/Puppy-and-Kitten-Sleeping-1000x500.jpg"
+        alt=""
+        class="w-full max-w-4xl"
+      />
     </div>
     <div class="flex items-center justify-center flex-col" id="adoptSection">
       <h1 id="scroller" class="font-bold text-2xl">Adopt Your Best Friend</h1>
       <h3 class="px-4 md:px-[450px] text-center py-8">
-        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
+        It is a long established fact that a reader will be distracted by the
+        readable content of a page when looking at its layout. The point of
+        using Lorem Ipsum is that it has a.
       </h3>
     </div>
   </section>
 
-  <!-- ✅ Deals Section -->
-  <section class="mx-4 md:mx-20">
-    <div class="flex justify-between my-10 px-4 md:px-12">
-      <h1 class="text-black font-bold text-xl">Best deal for you</h1>
-      <div class="btn rounded-xl bg-[rgba(14,122,129,1)] px-6 text-white">
-        <button id="sortByPriceBtn">Sort By Price</button>
+  <body class="bg-white text-gray-800">
+    <!-- ✅ Navbar -->
+    <section class="mx-4 md:mx-20">
+      <nav class="flex items-center justify-between pt-10 pb-5 relative">
+        <!-- Logo -->
+        <div class="flex items-center space-x-4">
+          <button><i class="fa-solid fa-paw text-xl"></i></button>
+          <h1 class="text-xl font-bold">Peddy</h1>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="nav-links hidden md:flex items-center space-x-6">
+          <button>Home</button>
+          <button>Shop</button>
+          <button>Contact</button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="relative flex items-center space-x-4 md:hidden">
+          <button class="text-2xl" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div
+            class="mobile-menu absolute right-0 top-full mt-2 w-40 bg-white px-4 py-4 shadow-md rounded-md hidden z-50"
+            id="mobileMenu"
+          >
+            <div class="grid gap-2">
+              <button class="hover:bg-gray-100 py-2 rounded">Home</button>
+              <button class="hover:bg-gray-100 py-2 rounded">Shop</button>
+              <button class="hover:bg-gray-100 py-2 rounded">Contact</button>
+              <button
+                class="hover:bg-gray-100 py-2 mt-2 rounded flex items-center gap-1"
+              >
+                <i class="fa-regular fa-user"></i> Account
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Icon (Desktop) -->
+        <div class="hidden md:block">
+          <button><i class="fa-regular fa-user text-xl"></i></button>
+        </div>
+      </nav>
+    </section>
+
+    <!-- ✅ Hero Section -->
+    <section>
+      <div class="center-container">
+        <p>Bringing Families Together</p>
+        <h1 class="boldtext">
+          <span>Your Path to Adoption</span>
+          <span>Starts Here</span>
+        </h1>
       </div>
-    </div>
-
-    <!-- Spinner -->
-    <div id="spinner" class="flex justify-center items-center my-6 hidden">
-      <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-solid"></div>
-    </div>
-
-    <!-- Pets -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 px-4 md:px-12">
-      <div id="pet-container" class="md:col-span-3 flex flex-wrap gap-5"></div>
-      <div id="likedPetsContainer" class="border border-black rounded p-4">
-        <div id="liked-pets" class="grid grid-cols-2 gap-2"></div>
+      <p class="p-5 text2">
+        <span
+          >It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking</span
+        >
+        <span
+          >at its layout. The point of using Lorem Ipsum is that it has a.</span
+        >
+      </p>
+      <div class="btn">
+        <a href="#scroller">
+          <button id="viewMoreBtn">View More</button>
+        </a>
       </div>
-    </div>
-  </section>
+      <div class="m-4 p-8 md:p-16 flex justify-center items-center">
+        <img
+          src="./assets/Puppy-and-Kitten-Sleeping-1000x500.jpg"
+          alt=""
+          class="w-full max-w-4xl"
+        />
+      </div>
+      <div class="flex items-center justify-center flex-col" id="adoptSection">
+        <h1 id="scroller" class="font-bold text-2xl">Adopt Your Best Friend</h1>
+        <h3 class="px-4 md:px-[450px] text-center py-8">
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a.
+        </h3>
+      </div>
+    </section>
 
+    <!-- ✅ Deals Section -->
+    <section class="mx-4 md:mx-20">
+      <div class="flex justify-between my-10 px-4 md:px-12">
+        <h1 class="text-black font-bold text-xl">Best deal for you</h1>
+        <div class="btn rounded-xl bg-[rgba(14,122,129,1)] px-6 text-white">
+          <button id="sortByPriceBtn">Sort By Price</button>
+        </div>
+      </div>
 
+      <!-- Spinner -->
+      <div id="spinner" class="flex justify-center items-center my-6 hidden">
+        <div
+          class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-solid"
+        ></div>
+      </div>
 
-<section>
+      <!-- Pets -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 px-4 md:px-12">
+        <div
+          id="pet-container"
+          class="md:col-span-3 flex flex-wrap gap-5"
+        ></div>
+        <div id="likedPetsContainer" class="border border-black rounded p-4">
+          <div id="liked-pets" class="grid grid-cols-2 gap-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
       <div class="pet-btns py-8 px-4 md:px-12">
         <button class="pet-btnss flex gap-3" data-type="dog">
-          <img class="w-10 h-10 sm:w-5 h-5" src="./assets/shiba.png" alt="">
+          <img class="w-10 h-10 sm:w-5 h-5" src="./assets/shiba.png" alt="" />
           Dogs
         </button>
         <button class="pet-btnss flex gap-3" data-type="cat">
-          <img class="w-10 h-10 sm:w-5 h-5" src="./assets/cat.png" alt="">
+          <img class="w-10 h-10 sm:w-5 h-5" src="./assets/cat.png" alt="" />
           Cats
         </button>
-        <button class="pet-btnss flex gap-1 " data-type="rabbit">
-          <img class="w-10 h-10 sm:w-5 h-5 text-sm" src="./assets/rabbit.png" alt="">
+        <button class="pet-btnss flex gap-1" data-type="rabbit">
+          <img
+            class="w-10 h-10 sm:w-5 h-5 text-sm"
+            src="./assets/rabbit.png"
+            alt=""
+          />
           Rabbits
         </button>
         <button class="pet-btnss flex gap-3" data-type="bird">
-          <img class="w-10 h-10 sm:w-5 h-5" src="./assets/parrot.png" alt="">
+          <img class="w-10 h-10 sm:w-5 h-5" src="./assets/parrot.png" alt="" />
           Birds
         </button>
       </div>
     </section>
 
-
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  </script>
-  <script src="script.js" defer></script>
-</body>
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+    <script src="script.js" defer></script>
+  </body>
 </html>
