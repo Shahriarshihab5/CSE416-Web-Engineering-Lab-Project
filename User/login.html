@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UserLogin</title>
+  <title>User Login | PawPromise</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Chewy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/login.css" />
+  <script type="module" src="/auth/firebaseLogin.js"></script>
+  <script src="/js/login.js" defer></script>
 </head>
 <body style="margin:0; font-family:'Poppins', sans-serif; background:#f9f9f9; display:flex; justify-content:center; align-items:center; height:100vh;">
 
   <div style="background:#fff; padding:30px; border-radius:15px; width:100%; max-width:380px; text-align:center; box-shadow:0 0 15px rgba(0,0,0,0.1);">
     
-    <!-- Logo and Branding -->
+    <!-- Logo -->
     <div style="margin-bottom:25px;">
-      <!-- Replace this src with your own image URL -->
       <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="PawPromise Logo" 
            style="width:100px; height:100px; border-radius:50%; border:4px solid #d4e6f1; object-fit:cover; margin-bottom:10px;">
       <h1 style="font-family:'Chewy', cursive; font-size:2.2rem; color:#6ab7e2; margin:0;">PawPromise</h1>
@@ -20,35 +22,28 @@
     </div>
 
     <!-- Login Form -->
-    <form action="#" method="POST" style="text-align:left;">
+    <form id="loginForm" style="text-align:left;">
       <label for="email" style="display:block; margin-bottom:5px; font-weight:600;">Email</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required
-             style="width:100%; padding:10px; margin-bottom:15px; border:1.5px solid #ccc; border-radius:8px;">
+      <input type="email" id="email" placeholder="Enter your email" required
+             style="width:100%; padding:10px; margin-bottom:5px; border:1.5px solid #ccc; border-radius:8px;">
+      <span id="emailError" style="display:none; color:red; font-size:0.8rem;">Invalid email</span>
 
-      <label for="password" style="display:block; margin-bottom:5px; font-weight:600;">Password</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required
-             style="width:100%; padding:10px; margin-bottom:20px; border:1.5px solid #ccc; border-radius:8px;">
+      <label for="password" style="display:block; margin-top:10px; margin-bottom:5px; font-weight:600;">Password</label>
+      <div style="position:relative;">
+        <input type="password" id="password" placeholder="Enter your password" required
+               style="width:100%; padding:10px; margin-bottom:15px; border:1.5px solid #ccc; border-radius:8px;">
+        <i id="togglePassword" class="fas fa-eye-slash" 
+           style="position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer;"></i>
+      </div>
 
       <button type="submit"
               style="width:100%; padding:12px; background:#6ab7e2; border:none; color:#fff; font-weight:600; border-radius:8px; cursor:pointer;">
         Log In
       </button>
-
-      <a href="#" style="display:block; text-align:center; margin-top:10px; font-size:0.9rem; color:#6ab7e2; text-decoration:none;">
-        Forgot Password?
-      </a>
     </form>
 
-    <!-- Divider -->
-    <div style="margin:20px 0; border-top:1px solid #ddd; position:relative;">
-      <span style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:#fff; padding:0 10px; color:#aaa; font-size:0.85rem;">
-        or
-      </span>
-    </div>
-
-    <!-- Sign Up Link -->
-    <p style="font-size:0.9rem;">Don't have an account? 
-      <a href="#" style="color:#6ab7e2; text-decoration:none; font-weight:600;">Sign Up</a>
+    <p style="margin-top:15px; font-size:0.9rem; text-align:center;">
+      Don't have an account? <a href="register.html" style="color:#6ab7e2; text-decoration:none; font-weight:600;">Sign Up</a>
     </p>
   </div>
 

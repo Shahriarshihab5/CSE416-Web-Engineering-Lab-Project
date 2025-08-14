@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       emailError.style.display = 'block';
     } else {
       emailError.style.display = 'none';
+      // **Firebase login will handle actual submission**
     }
   });
 });
