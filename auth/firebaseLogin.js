@@ -1,5 +1,6 @@
+// Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const passwordInput = document.getElementById('password');
   const emailError = document.getElementById('emailError');
   const togglePassword = document.getElementById('togglePassword');
+  const forgotPassword = document.getElementById('forgotPassword');
 
   // Toggle password visibility
   togglePassword.addEventListener('click', () => {
@@ -30,14 +32,27 @@ document.addEventListener('DOMContentLoaded', function () {
     togglePassword.classList.toggle('fa-eye-slash');
   });
 
-  // Form submit
+  // Forgot password
+  forgotPassword.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) {
+      Swal.fire("Enter your email first!", "", "warning");
+      return;
+    }
+    sendPasswordResetEmail(auth, email)
+      .then(() => Swal.fire("Password reset email sent!", "", "success"))
+      .catch(err => Swal.fire("Error", err.message, "error"));
+  });
+
+  // Login form submit
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
-    // Simple email validation
+    // Email validation
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!isValidEmail) {
       emailError.style.display = 'block';
@@ -49,12 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Firebase login
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
-        alert("Login successful!");
-        window.location.href = "/pages/dashboard.html";
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'success',
+          title: 'Login Successful!',
+          showConfirmButton: false,
+          timer: 2000
+        }).then(() => {
+          window.location.href = "/pages/dashboard.html"; // Redirect to dashboard
+        });
       })
       .catch(error => {
-        console.error(error);
-        alert("Login failed: " + error.message);
+        Swal.fire("Login Failed", error.message, "error");
       });
   });
 });
