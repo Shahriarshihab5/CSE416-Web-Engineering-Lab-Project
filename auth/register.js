@@ -51,6 +51,12 @@ signupForm.addEventListener("submit", async (e) => {
         const user = userCredential.user;
         console.log("Registered user:", user);
 
+         await fetch("/api/users/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email })
+        });
+
         Swal.fire({
             toast: true,
             position: 'top-end',

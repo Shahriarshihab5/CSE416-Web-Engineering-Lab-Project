@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawPromise - Pet Medicine & Surgery Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Chewy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <link rel="stylesheet" href="/css/petMedicine.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 md:px-20 py-4 bg-white shadow w-full">
+    <div class="flex items-center gap-3">
+      <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="logo"
+        class="w-10 h-10 rounded-full border-2 border-blue-200">
+      <h1 class="brand text-xl font-bold">PawPromise</h1>
+    </div>
+
+    <div class="hidden md:flex items-center gap-6">
+      <a href="#" class="hover:text-[#6ab7e2]">Home</a>
+      <a href="#" class="hover:text-[#6ab7e2]">Pet Food</a>
+      <a href="#" class="text-[#6ab7e2]">Pet Medicine</a>
+      <a href="#" class="hover:text-[#6ab7e2]">Contact</a>
+      <a href="#" class="hover:text-[#6ab7e2]">About</a>
+    </div>
+  </nav>
+
+  <!-- Heading -->
+  <header class="text-center py-8">
+    <h1 class="text-4xl font-bold text-gray-800">Best Quality Medicines & Surgery Instruments for Pets</h1>
+    <p class="text-gray-600 mt-2">Choose the right care for your furry and feathered friends</p>
+  </header>
+
+  <!-- Controls -->
+  <section class="p-6 flex flex-wrap gap-4 justify-center">
+    <select id="filterCategory" class="p-2 border rounded">
+      <option value="all">All Types</option>
+      <option value="medicine">Medicines</option>
+      <option value="surgery">Surgery Instruments</option>
+      <option value="aftercare">After-Surgery Items</option>
+    </select>
+
+    <select id="sortAnimal" class="p-2 border rounded">
+      <option value="all">All Animals</option>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="rabbit">Rabbit</option>
+      <option value="bird">Bird</option>
+      <option value="other">Other</option>
+    </select>
+
+    <select id="sortPrice" class="p-2 border rounded">
+      <option value="default">Sort by Price</option>
+      <option value="low">Lowest to Highest</option>
+      <option value="high">Highest to Lowest</option>
+    </select>
+  </section>
+
+  <!-- Product List -->
+  <section id="productList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6 md:px-20 py-10"></section>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-bg">
+    <div class="modal-content">
+      <h2 id="modalTitle" class="text-xl font-bold mb-2"></h2>
+      <img id="modalImage" src="" class="w-full mb-4 rounded">
+      <p id="modalDesc" class="mb-4"></p>
+      <p class="font-bold text-green-600">Price: <span id="modalPrice"></span> Tk</p>
+      <button id="closeModal" class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-10">
+    <div class="px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h2 class="font-bold text-lg mb-2">PawPromise</h2>
+        <p>Email: petmedicine@pawpromise.com</p>
+        <p>Contact: +8801761896783</p>
+      </div>
+      <div>
+        <h2 class="font-bold text-lg mb-2">Quick Links</h2>
+        <ul class="space-y-1">
+          <li><a href="#" class="hover:text-[#6ab7e2]">Home</a></li>
+          <li><a href="#" class="hover:text-[#6ab7e2]">Pet Food</a></li>
+          <li><a href="#" class="hover:text-[#6ab7e2]">Pet Medicine</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-bold text-lg mb-2">About</h2>
+        <p class="text-sm">Providing the best medicines and instruments for your pets at affordable prices.</p>
+      </div>
+    </div>
+    <div class="text-center mt-6 border-t border-gray-700 pt-4 text-sm">
+      &copy; 2025 PawPromise. All Rights Reserved.
+    </div>
+  </footer>
+<script src="/js/petMedicine.js"></script>
+  </body>
+</html>

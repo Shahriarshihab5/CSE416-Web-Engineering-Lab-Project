@@ -1,0 +1,29 @@
+{
+  "name": "web-lab-project",
+  "version": "1.0.0",
+  "description": "Backend server for Web Lab Project using Node.js, Express, and MongoDB",
+  "main": "server/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shahriarshihab5/CSE416-Web-Engineering-Lab-Project.git"
+  },
+  "keywords": ["nodejs", "express", "mongodb", "mongoose", "web-lab-project"],
+  "author": "Your Name",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shahriarshihab5/CSE416-Web-Engineering-Lab-Project/issues"
+  },
+  "homepage": "https://github.com/Shahriarshihab5/CSE416-Web-Engineering-Lab-Project#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.1"
+  }
+}

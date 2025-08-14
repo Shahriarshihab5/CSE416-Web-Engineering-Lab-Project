@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawPromise - Veterinary Specialists</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Chewy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  
+
+  <link rel="stylesheet" href="/css/petDoctor.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 md:px-20 py-4 bg-white shadow w-full">
+    <div class="flex items-center gap-3">
+      <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="logo"
+        class="w-10 h-10 rounded-full border-2 border-blue-200">
+      <h1 class="brand text-xl font-bold">PawPromise</h1>
+    </div>
+
+    <div class="hidden md:flex items-center gap-6">
+      <a href="#" class="hover:text-[#6ab7e2]">Home</a>
+      <a href="#" class="hover:text-[#6ab7e2]">Pet Food</a>
+      <a href="#" class="text-[#6ab7e2]">Veterinarians</a>
+      <a href="#" class="hover:text-[#6ab7e2]">Contact</a>
+      <a href="#" class="hover:text-[#6ab7e2]">About</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-6 md:px-20 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Doctors List -->
+      <div class="lg:w-3/4">
+       <center> <h1 class="text-3xl font-bold text-gray-800 mb-6">Our Veterinary Specialists</h1> </center>
+        <div id="doctorsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Doctors will be loaded here -->
+        </div>
+      </div>
+
+      <!-- Filters Sidebar -->
+      <div class="lg:w-1/4">
+        <div class="filter-section">
+          <center><h2 class="text-xl font-bold mb-4">Filter</h2></center>
+          <div class="mb-4">
+            <h3>Specialty</h3>
+            <select id="specialtyFilter" class="mt-2 w-full">
+              <option value="all">All Specialties</option>
+              <option value="anesthesia">Anesthesia</option>
+              <option value="surgery">Surgery</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="emergency medicine">Emergency Medicine</option>
+              <option value="general practice">General Practice</option>
+            </select>
+          </div>
+
+          <div>
+            <h3>Location</h3>
+            <select id="locationFilter" class="mt-2 w-full">
+              <option value="all">All Locations</option>
+              <option value="Dhaka">Dhaka</option>
+              <option value="Mymensingh">Mymensingh</option>
+              <option value="Bogura">Bogura</option> 
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+ 
+<div id="doctorModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-10">
+    <div class="px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h2 class="font-bold text-lg mb-2">PawPromise</h2>
+        <p>Email: petmedicine@pawpromise.com</p>
+        <p>Contact: +8801761896783</p>
+      </div>
+      <div>
+        <h2 class="font-bold text-lg mb-2">Quick Links</h2>
+        <ul class="space-y-1">
+          <li><a href="#" class="hover:text-[#6ab7e2]">Home</a></li>
+          <li><a href="#" class="hover:text-[#6ab7e2]">Pet Food</a></li>
+          <li><a href="#" class="hover:text-[#6ab7e2]">Veterinarians</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-bold text-lg mb-2">About</h2>
+        <p class="text-sm">Connecting pet owners with top veterinary specialists worldwide.</p>
+      </div>
+    </div>
+    <div class="text-center mt-6 border-t border-gray-700 pt-4 text-sm">
+      &copy; 2025 PawPromise. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script src="/js/petDoctor.js"></script>
+</body>
+</html>
