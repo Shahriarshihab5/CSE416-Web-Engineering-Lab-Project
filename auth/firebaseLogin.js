@@ -1,6 +1,5 @@
-// Firebase imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -12,53 +11,44 @@ const firebaseConfig = {
   appId: "1:80994644943:web:3d0a61286e773a1210d8ba",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
   const emailError = document.getElementById('emailError');
   const togglePassword = document.getElementById('togglePassword');
-  const forgotPassword = document.getElementById('forgotPassword');
 
+  togglePassword.addEventListener('click', () => {
+    const type = passwordInput.type === 'password' ? 'text' : 'password';
+    passwordInput.type = type;
+    togglePassword.classList.toggle('fa-eye');
+    togglePassword.classList.toggle('fa-eye-slash');
+  });
 
-  // Login form submit
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
-    // Email validation
-    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!isValidEmail) {
-      emailError.style.display = 'block';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailError.classList.remove('hidden');
       return;
-    } else {
-      emailError.style.display = 'none';
-    }
+    } else emailError.classList.add('hidden');
 
-    // Firebase login
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
-        Swal.fire({
-          toast: true,
-          position: 'top-end',
-          icon: 'success',
-          title: 'Login Successful!',
-          showConfirmButton: false,
-          timer: 2000
-        }).then(() => {
-          window.location.href = "/pages/home.html";
-        });
+        const user = userCredential.user;
+        localStorage.setItem("user", JSON.stringify({ uid: user.uid, email: user.email }));
+        Swal.fire({ icon: 'success', title: 'Login Successful!', toast: true, position: 'top-end', timer: 1500, showConfirmButton: false })
+          .then(() => window.location.href = "/pages/home.html");
       })
-      .catch(error => {
-        Swal.fire("Login Failed", error.message, "error");
+      .catch(err => {
+        Swal.fire("Login Failed", err.message, "error");
         passwordInput.value = "";
-        passwordInput.focus(); 
+        passwordInput.focus();
       });
   });
 });
