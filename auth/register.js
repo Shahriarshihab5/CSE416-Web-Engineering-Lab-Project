@@ -1,6 +1,7 @@
-// Firebase imports
+// /auth/register.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
 
 // Firebase configuration
 const firebaseConfig = {
@@ -34,25 +35,51 @@ signupForm.addEventListener("submit", async (e) => {
 
     // Basic validation
     if (!name || !email || !password || !confirmPassword) {
-        alert("Please fill in all fields.");
+        Swal.fire("Error", "Please fill in all fields.", "error");
         return;
     }
 
     if (password !== confirmPassword) {
-        alert("Passwords do not match.");
+        Swal.fire("Error", "Passwords do not match.", "error");
+        passwordInput.value = "";
+        confirmPasswordInput.value = "";
         return;
     }
 
     try {
-        // Create user in Firebase
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         console.log("Registered user:", user);
 
-        alert("Registration successful!");
-        window.location.href = "/user/login.html"; // Redirect to login
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registration Successful!',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            window.location.href = "/user/login.html";
+        });
     } catch (error) {
-        console.error("Registration error:", error);
-        alert(error.message);
+        let message = "";
+
+        switch (error.code) {
+            case "auth/email-already-in-use":
+                message = "This email is already registered.";
+                break;
+            case "auth/invalid-email":
+                message = "Please enter a valid email address.";
+                break;
+            case "auth/weak-password":
+                message = "Password should be at least 6 characters.";
+                break;
+            default:
+                message = "Registration failed. Please try again.";
+        }
+
+        Swal.fire("Registration Failed", message, "error");
+        passwordInput.value = "";
+        confirmPasswordInput.value = "";
     }
 });
