@@ -1,0 +1,62 @@
+
+    body {
+      background-color: honeydew;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .brand {
+      font-family: 'Chewy', cursive;
+      color:#6ab7e2;
+    }
+    
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      background: linear-gradient(180deg, #ffffff, #f0faff);
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4/3;
+      object-fit:fill;
+      border-radius: 0.75rem;
+      transition: transform 0.4s ease;
+    }
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .buy-btn {
+      transition: all 0.3s ease;
+    }
+    .buy-btn:hover {
+      background-color: #2563eb;
+      transform: translateY(-2px);
+    }
+  

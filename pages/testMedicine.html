@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawPromise - Pet Medicine & Surgery Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Chewy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    body {
+      background-color: honeydew;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .brand {
+      font-family: 'Chewy', cursive;
+      color:#6ab7e2;
+    }
+    
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      background: linear-gradient(180deg, #ffffff, #f0faff);
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4/3;
+      object-fit:fill;
+      border-radius: 0.75rem;
+      transition: transform 0.4s ease;
+    }
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .buy-btn {
+      transition: all 0.3s ease;
+    }
+    .buy-btn:hover {
+      background-color: #2563eb;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 md:px-20 py-4 bg-white shadow w-full">
+    <div class="flex items-center gap-3">
+      <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="logo"
+        class="w-10 h-10 rounded-full border-2 border-blue-200">
+      <h1 class="brand text-xl font-bold">PawPromise</h1>
+    </div>
+
+    <div class="hidden md:flex items-center gap-6">
+      <a href="#" class="hover:text-[#6ab7e2]">Home</a>
+      <a href="#" class="hover:text-[#6ab7e2]">Pet Food</a>
+      <a href="#" class="text-[#6ab7e2]">Pet Medicine</a>
+      <a href="#" class="hover:text-[#6ab7e2]">Contact</a>
+      <a href="#" class="hover:text-[#6ab7e2]">About</a>
+    </div>
+  </nav>
+
+  <!-- Heading -->
+  <header class="text-center py-8">
+    <h1 class="text-4xl font-bold text-gray-800">Best Quality Medicines & Surgery Instruments for Pets</h1>
+    <p class="text-gray-600 mt-2">Choose the right care for your furry and feathered friends</p>
+  </header>
+
+  <!-- Controls -->
+  <section class="p-6 flex flex-wrap gap-4 justify-center">
+    <select id="filterCategory" class="p-2 border rounded">
+      <option value="all">All Types</option>
+      <option value="medicine">Medicines</option>
+      <option value="surgery">Surgery Instruments</option>
+      <option value="aftercare">After-Surgery Items</option>
+    </select>
+
+    <select id="sortAnimal" class="p-2 border rounded">
+      <option value="all">All Animals</option>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="rabbit">Rabbit</option>
+      <option value="bird">Bird</option>
+      <option value="other">Other</option>
+    </select>
+
+    <select id="sortPrice" class="p-2 border rounded">
+      <option value="default">Sort by Price</option>
+      <option value="low">Lowest to Highest</option>
+      <option value="high">Highest to Lowest</option>
+    </select>
+  </section>
+
+  <!-- Product List -->
+  <section id="productList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6 md:px-20 py-10"></section>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-bg flex">
+    <div class="modal-content">
+      <h2 id="modalTitle" class="text-xl font-bold mb-2"></h2>
+      <img id="modalImage" src="" class="w-full mb-4 rounded">
+      <p id="modalDesc" class="mb-4"></p>
+      <p class="font-bold text-green-600">Price: <span id="modalPrice"></span> Tk</p>
+      <button id="closeModal" class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-10">
+    <div class="px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h2 class="font-bold text-lg mb-2">PawPromise</h2>
+        <p>Email: petmedicine@pawpromise.com</p>
+        <p>Contact: +8801761896783</p>
+      </div>
+      <div>
+        <h2 class="font-bold text-lg mb-2">Quick Links</h2>
+        <ul class="space-y-1">
+          <li><a href="#" class="hover:text-[#6ab7e2]">Home</a></li>
+          <li><a href="#" class="hover:text-[#6ab7e2]">Pet Food</a></li>
+          <li><a href="#" class="hover:text-[#6ab7e2]">Pet Medicine</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-bold text-lg mb-2">About</h2>
+        <p class="text-sm">Providing the best medicines and instruments for your pets at affordable prices.</p>
+      </div>
+    </div>
+    <div class="text-center mt-6 border-t border-gray-700 pt-4 text-sm">
+      &copy; 2025 PawPromise. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      // Medicines
+      { type: "medicine", animal: "dog", name: "Dog Pain Killer", price: 1200, img: "https://m.media-amazon.com/images/I/810wQnz97ML._UF1000,1000_QL80_.jpg", desc: "Pain relief medicine for dogs." },
+
+      { type: "medicine", animal: "dog", name: "Dog Antibiotic", price: 1350, img: "https://m.media-amazon.com/images/I/81FS4qRSENL.jpg", desc: "Broad-spectrum antibiotic used for skin, respiratory, and urinary infections." },
+
+      { type: "medicine", animal: "dog", name: "Carprofen", price: 1395, img: "https://media.scahealth.com/product/carprofen-caplets-_33_08_z_330892.jpg", desc: "Pain reliever for arthritis and post-surgery recovery." },
+
+      { type: "medicine", animal: "cat", name: "Amoxicillin for cat", price: 350, img: "https://www.advacarepharma.com/images/amoxicillin-suspension-for-injection-box-vial.png", desc: "Antibiotic treatment for cats." },
+
+      { type: "medicine", animal: "cat", name: "Revolution Plus cat medicine", price: 399, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDuozZL2HNUM4hGzYGxBuvsHtyBAD70nPqqA&s", desc: "Topical treatment for fleas, ticks, and worms." },
+
+      { type: "medicine", animal: "cat", name: "Cat Antibiotic", price: 410, img: "https://m.media-amazon.com/images/I/71cFKSd1IfL.jpg", desc: "Antibiotic treatment for cats." },
+      
+      { type: "medicine", animal: "rabbit", name: "Rabbit Dewormer", price: 500, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS66HLtlSFhG-jqvKcazUpuQ742WU4KdU6T9w&s", desc: "Removes internal worms." },
+
+      { type: "medicine", animal: "bird", name: "Bird Vitamin Drops", price: 250, img: "https://s10cdn.spectrumbrands.com/-/media/project/spectrumcommerce/wildharvest/products/birds/d13123-wh-multidropsbird.jpg?rev=5f7a5498389e4866beaecb061b4e579b", desc: "Essential vitamins for birds." },
+
+      { type: "medicine", animal: "bird", name: "Enrofloxacin for Bird", price: 375, img: "https://www.acmeglobal.com/wp-content/uploads/2022/09/enrovet-100ml.png", desc: "Antibiotic for respiratory and gastrointestinal infections." },
+
+      { type: "medicine", animal: "other", name: "Marboxin", price: 399, img: "https://rangepharma.com/wp-content/uploads/2018/03/Marboxin-10-SS-15.11.16.jpg", desc: "For exotic pets." },
+
+      // Surgery Instruments
+      { type: "surgery", animal: "dog", name: "Dog Scalpel", price: 150, img: "https://m.media-amazon.com/images/I/41kDtycTVZL._UF1000,1000_QL80_.jpg", desc: "Sharp surgical scalpel." },
+      { type: "surgery", animal: "cat", name: "Cat Surgical Scissors", price: 200, img: "https://dealsonmedical.com/cdn/shop/products/Cat_Claw_Scissors_12-750.jpg?v=1605933584", desc: "Precision surgical scissors." },
+      { type: "surgery", animal: "rabbit", name: "Rabbit Surgical Kit", price: 750, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTUb9hHG3VVG3psqD59yydWpw7TwhqTHjZhg&s", desc: "Complete surgery kit." },
+      { type: "surgery", animal: "bird", name: "Bird Surgery Tweezers", price: 170, img: "https://web.gerdentusa.com/up_data/products/images/gd50-5124-bird-beak-dental-forceps-1587380334.jpg", desc: "Fine tweezers for delicate work." },
+      { type: "surgery", animal: "other", name: "General Pet Surgery Set", price: 950, img: "https://img.medicalexpo.com/images_me/photo-m2/110100-16666342.jpg", desc: "Surgery tools for exotic pets." },
+
+      // After-Surgery
+      { type: "aftercare", animal: "dog", name: "Dog Recovery Collar", price: 180, img: "https://img.drz.lazcdn.com/static/bd/p/d0720e1e2e2185b1a95c3c9f2b598473.jpg_720x720q80.jpg", desc: "Protects wounds after surgery." },
+      { type: "aftercare", animal: "cat", name: "Cat Recovery Blanket", price: 199, img: "https://image.made-in-china.com/2f0j00RNjiOKaYyFod/Prevent-Lick-After-Surgery-Professional-Pet-Recovery-Suit-Cat-Clothing-Clothes.webp", desc: "Keeps cats warm post-op." },
+      { type: "aftercare", animal: "rabbit", name: "Rabbit Wound Spray", price: 450, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXIRcOpo2G8WOV_osxqwtc8O9Wk9Hwf7Ljfw&s", desc: "Speeds up wound healing." },
+
+      { type: "aftercare", animal: "bird", name: "Bird Bandage Wrap", price: 100, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr-LUZfXGjdTONDaUjj9g5-1f1xFWoLL5vNA&s", desc: "Secure bandage wrap." },
+
+      { type: "aftercare", animal: "other", name: "Generic Pet Aftercare Kit", price: 2000, img: "https://homehealth-uk.com/wp-content/uploads/Travel_Pet_First_Aid_2.jpeg", desc: "Suitable for multiple animals." }
+    ];
+
+    const productList = document.getElementById("productList");
+    const filterCategory = document.getElementById("filterCategory");
+    const sortAnimal = document.getElementById("sortAnimal");
+    const sortPrice = document.getElementById("sortPrice");
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalImage = document.getElementById("modalImage");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalPrice = document.getElementById("modalPrice");
+    const closeModal = document.getElementById("closeModal");
+
+    function renderProducts() {
+      let filtered = [...products];
+
+      if (filterCategory.value !== "all") {
+        filtered = filtered.filter(p => p.type === filterCategory.value);
+      }
+      if (sortAnimal.value !== "all") {
+        filtered = filtered.filter(p => p.animal === sortAnimal.value);
+      }
+      if (sortPrice.value === "low") {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortPrice.value === "high") {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      productList.innerHTML = "";
+      if (filtered.length === 0) {
+        productList.innerHTML = '<p class="text-center col-span-4 py-10">No products found. Try different filters.</p>';
+        return;
+      }
+
+      filtered.forEach(p => {
+        const card = document.createElement("div");
+        card.className = "card bg-white rounded shadow p-4";
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" class="w-full h-48 object-cover rounded mb-2">
+          <h3 class="font-bold">${p.name}</h3>
+          <p class="text-green-600 font-semibold">${p.price} Tk</p>
+          <button class="buy-btn mt-2 bg-blue-500 text-white px-3 py-1 rounded w-full">Buy</button>
+        `;
+        
+        // Add click handler for Buy button
+        const buyBtn = card.querySelector("button");
+        buyBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          alert(`${p.name} added to cart!`);
+        });
+
+        // Add click handler for card (opens modal)
+        card.addEventListener("click", () => {
+          modalTitle.textContent = p.name;
+          modalImage.src = p.img;
+          modalDesc.textContent = p.desc;
+          modalPrice.textContent = p.price;
+          modal.style.display = "flex";
+        });
+
+        productList.appendChild(card);
+      });
+    }
+
+    // Event listeners
+    [filterCategory, sortAnimal, sortPrice].forEach(select => {
+      select.addEventListener("change", renderProducts);
+    });
+
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Initial render
+    renderProducts();
+  </script>
+</body>
+</html>
