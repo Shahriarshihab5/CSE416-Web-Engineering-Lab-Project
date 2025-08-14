@@ -1,38 +1,60 @@
-// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 // Firebase config
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyA6Joeqw9y0tRDRmXrFVUm0lCgRGokK3n8",
+    authDomain: "webproject-dd868.firebaseapp.com",
+    projectId: "webproject-dd868",
+    storageBucket: "webproject-dd868.appspot.com",
+    messagingSenderId: "80994644943",
+    appId: "1:80994644943:web:3d0a61286e773a1210d8ba",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Handle login
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+  const loginForm = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const togglePassword = document.getElementById('togglePassword');
 
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value.trim();
+  // Toggle password visibility
+  togglePassword.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    togglePassword.classList.toggle('fa-eye');
+    togglePassword.classList.toggle('fa-eye-slash');
+  });
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Logged in
-      const user = userCredential.user;
-      alert("Login successful!");
-      window.location.href = "/pages/dashboard.html"; // redirect
-    })
-    .catch((error) => {
-      console.error(error);
-      alert("Login failed: " + error.message);
-    });
+  // Form submit
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    // Simple email validation
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!isValidEmail) {
+      emailError.style.display = 'block';
+      return;
+    } else {
+      emailError.style.display = 'none';
+    }
+
+    // Firebase login
+    signInWithEmailAndPassword(auth, email, password)
+      .then(userCredential => {
+        alert("Login successful!");
+        window.location.href = "/pages/dashboard.html";
+      })
+      .catch(error => {
+        console.error(error);
+        alert("Login failed: " + error.message);
+      });
+  });
 });
