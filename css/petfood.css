@@ -1,0 +1,87 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9fafb; /* Soft background */
+}
+
+.brand-title {
+  font-family: 'Chewy', cursive;
+  font-size: 1.8rem;
+  color: #6ab7e2;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+.brand-title:hover {
+  color: #4ba3d1;
+}
+
+/* Food card styling */
+.food-card {
+  background: linear-gradient(180deg, #ffffff, #f0faff);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.food-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+}
+
+/* Food images */
+.food-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  transition: transform 0.4s ease;
+}
+.food-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Card title */
+.food-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0.75rem;
+}
+
+/* Price text */
+.food-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.3rem;
+}
+
+/* Add to cart button */
+.food-card button {
+  margin-top: 0.75rem;
+  background-color: #6ab7e2;
+  color: white;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.food-card button:hover {
+  background-color: #4ba3d1;
+  box-shadow: 0 4px 15px rgba(106,183,226,0.5);
+}
+
+/* Sorting dropdowns */
+select {
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+select:focus {
+  border-color: #6ab7e2;
+  box-shadow: 0 0 5px rgba(106,183,226,0.5);
+  outline: none;
+}

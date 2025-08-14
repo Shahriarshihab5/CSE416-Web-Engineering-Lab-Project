@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
           showConfirmButton: false,
           timer: 2000
         }).then(() => {
-          window.location.href = "/pages/dashboard.html";
+          window.location.href = "/pages/home.html";
         });
       })
       .catch(error => {
