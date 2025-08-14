@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Food - PawPromise</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Chewy&display=swap" rel="stylesheet">
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/petfood.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 md:px-20 py-4 bg-white shadow">
+    <div class="flex items-center gap-3">
+      <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="logo"
+        class="w-10 h-10 rounded-full border-2 border-blue-200">
+      <h1 class="brand-title">PawPromise</h1>
+    </div>
+    <div class="hidden md:flex gap-6 font-medium">
+      <a href="index.html" class="hover:text-[#6ab7e2]">Home</a>
+      <a href="petfood.html" class="text-[#6ab7e2]">Pet Food</a>
+      <a href="#" class="hover:text-[#6ab7e2]">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Heading -->
+  <header class="text-center py-8">
+    <h1 class="text-4xl font-bold text-gray-800">Best Quality Food for Every Pet</h1>
+    <p class="text-gray-600 mt-2">Choose the best food for your furry and feathered friends</p>
+  </header>
+
+  <!-- Sorting Options -->
+  <section class="flex flex-col md:flex-row gap-4 justify-center items-center px-6">
+    <select id="sortAnimal">
+      <option value="">Sort by Animal</option>
+      <option value="dog">Dog</option>
+      <option value="cat">Cat</option>
+      <option value="bird">Bird</option>
+      <option value="rabbit">Rabbit</option>
+      <option value="other">Other</option>
+    </select>
+
+    <select id="sortPrice">
+      <option value="">Sort by Price</option>
+      <option value="low-high">Lowest to Highest</option>
+      <option value="high-low">Highest to Lowest</option>
+    </select>
+  </section>
+
+  <!-- Food Items -->
+  <section class="px-6 md:px-20 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="foodList">
+
+    <!-- Dog Foods -->
+    <div class="food-card" data-animal="dog" data-price="1500">
+      <img
+        src="https://ds.rokomari.store/rokomari110/ProductNew20190903/260X372/Enjoy_Adult_Dog_Food_Chicken_Flavour_10_-Enjoy-f9df4-441339.png"
+        alt="Dog Food">
+      <h3>Premium Chicken Dog Food</h3>
+      <p>Price: 1500 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="dog" data-price="2450">
+      <img
+        src="https://www.naturesrecipe.com/wp-content/uploads/2024/04/Natures-Recipe-Puppy-Lamb-Rice-Recipe-Dry-Dog-Food.png"
+        alt="Dog Food">
+      <h3>Lamb & Rice Meal Dog Food</h3>
+      <p>Price: 2450 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="dog" data-price="880">
+      <img src="https://m.media-amazon.com/images/I/71o84Bphv-L._UF1000,1000_QL80_.jpg" alt="Dog Food">
+      <h3>Dry Dog Food Chicken and Egg</h3>
+      <p>Price: 880 TK</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Cat Foods -->
+    <div class="food-card" data-animal="cat" data-price="750">
+      <img src="https://i.chaldn.com/_mpimage/oskies-adult-cat-food-tuna-500-gm" alt="Cat Food">
+      <h3>Tuna Delight Cat Food</h3>
+      <p>Price: 750 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="cat" data-price="1350">
+      <img
+        src="https://paikaree.com.bd/public/uploads/products/photos/cat-n-joy-cat-food-salmon-flavour-for-adult-cat---1.2kg-paikaree.webp"
+        alt="Cat Food">
+      <h3>Cat n Joy Salmon Cat Food</h3>
+      <p>Price: 1350 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="cat" data-price="530">
+      <img src="https://i.chaldn.com/_mpimage/whiskas-kitten-cat-food-junior-ocean-fish-milk-450-gm" alt="Cat Food">
+      <h3>Whiskas Kitten Dry Cat Food</h3>
+      <p>Price: 530 TK</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Bird Foods -->
+    <div class="food-card" data-animal="bird" data-price="350">
+      <img src="https://i0.wp.com/www.pettownbd.com/wp-content/uploads/2025/06/Versele-Laga-Loro-Parque-ARA-Parrot.webp"
+        alt="Bird Food">
+      <h3>Prestige Mix Seeds Parrot Food</h3>
+      <p>Price: 350 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="bird" data-price="399">
+      <img src="https://img.drz.lazcdn.com/static/bd/p/a7480073d80e0fe52f907f076dc6e607.jpg_720x720q80.jpg"
+        alt="Bird Food">
+      <h3>Budgie Premium Mix Bird Food</h3>
+      <p>Price: 399 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="bird" data-price="280">
+      <img
+        src="https://cdn11.bigcommerce.com/s-bbbdf/images/stencil/1280x1280/products/3547/15079/Country-Canary-Seed-Mix-Bird-Food-600g-652700_3__93671.1729855107.jpg"
+        alt="Bird Food">
+      <h3>Canary Healthy Seeds Bird Food</h3>
+      <p>Price: 280 TK</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Rabbit Foods -->
+    <div class="food-card" data-animal="rabbit" data-price="650">
+      <img src="https://shop.smallpetselect.com/cdn/shop/products/10LB-Rabbit-Food-Angle-5copy.jpg?v=1741876324"
+        alt="Rabbit Food">
+      <h3>Healthy Rabbit Pellets Food</h3>
+      <p>Price: 650 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="rabbit" data-price="790">
+      <img
+        src="https://media.os.fressnapf.com/products-v2/4/a/0/2/4a029ab731970712be1f75597da02298225a8f46_68db311baa64afd5b05679dd33e4fe9db46df785.jpg"
+        alt="Rabbit Food">
+      <h3>Carrot & Herb Mix Rabbit Food</h3>
+      <p>Price: 790 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="rabbit" data-price="520">
+      <img src="https://static-01.daraz.com.bd/p/da251fd1f95d3c25adcff0503cb4fa02.jpg" alt="Rabbit Food">
+      <h3>Quick Premium Rabbit Food</h3>
+      <p>Price: 520 TK</p>
+      <button>Add to Cart</button>
+    </div>
+
+    <!-- Other Pet Foods -->
+    <div class="food-card" data-animal="other" data-price="620">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4k-M2ZO_R_BExiJq7fd0T1VGezXssh84N1A&s"
+        alt="Hamster Food">
+      <h3>Hamster Crunch Mix</h3>
+      <p>Price: 620 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="other" data-price="700">
+      <img src="https://smallpetselect.co.uk/cdn/shop/files/GuineaPigVeggieMix_jpg.png?v=1696942772"
+        alt="Guinea Pig Food">
+      <h3>Guinea Pig Veggie Mix</h3>
+      <p>Price: 700 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="other" data-price="950">
+      <img src="https://m.media-amazon.com/images/I/71uggjddUIL.jpg" alt="Ferret Food">
+      <h3>Ferret Protein Pellets</h3>
+      <p>Price: 950 TK</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="food-card" data-animal="other" data-price="790">
+      <img src="https://images-eu.ssl-images-amazon.com/images/I/91i0AWdBmqL._AC_UL600_SR600,600_.jpg"
+        alt="Pigeon Food">
+      <h3>Pigeon Mixed Seed</h3>
+      <p>Price: 790 TK</p>
+      <button>Add to Cart</button>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-10">
+    <div class="px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h2 class="font-bold text-lg mb-2">PawPromise</h2>
+        <p>Email: abbishal25@gmail.com</p>
+        <p>Contact: +8801761896783</p>
+      </div>
+      <div>
+        <h2 class="font-bold text-lg mb-2">Quick Links</h2>
+        <ul class="space-y-1">
+          <li><a href="index.html" class="hover:text-[#6ab7e2]">Home</a></li>
+          <li><a href="petfood.html" class="hover:text-[#6ab7e2]">Pet Food</a></li>
+          <li><a href="#" class="hover:text-[#6ab7e2]">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-bold text-lg mb-2">About</h2>
+        <p class="text-sm">Providing the best food and supplies for your pets at affordable prices. Your pet’s health is
+          our priority.</p>
+      </div>
+    </div>
+    <div class="text-center mt-6 border-t border-gray-700 pt-4 text-sm">
+      &copy; 2025 PawPromise. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Sorting Script -->
+   <script src="/js/petfood.js"></script>
+
+</body>
+
+</html>
