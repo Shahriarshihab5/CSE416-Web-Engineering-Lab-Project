@@ -6,45 +6,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pet Adoption</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body style="background-color: honeydew;">
+
+  <!-- Paste the full navbar code here in every page -->
+  <nav class="flex items-center justify-between px-6 md:px-20 py-4 bg-white shadow w-full">
+
+    <div class="flex items-center gap-3">
+      <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="logo"
+        class="w-10 h-10 rounded-full border-2 border-blue-200">
+      <h1 class="brand-title">PawPromise</h1>
+    </div>
+
+    <!-- Right links + profile -->
+    <div class="hidden md:flex items-center gap-6">
+      <a href="home.html" class="text-[#6ab7e2]">Home</a>
+      <a href="petfood.html" class="hover:text-[#6ab7e2]">Pet Food</a>
+      <a href="#" class="hover:text-[#6ab7e2]">Contact</a>
+      <a href="#" class="hover:text-[#6ab7e2]">About</a>
+
+      <div class="relative">
+        <button id="profileButton" class="flex items-center gap-2 p-2 rounded hover:bg-gray-100">
+          <i class="fa-regular fa-user text-xl"></i>
+        </button>
+        <div id="profileMenu"
+          class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md flex flex-col z-50">
+          <a href="#" class="px-4 py-2 hover:bg-gray-100">Profile</a>
+          <a href="#" class="px-4 py-2 hover:bg-gray-100">Update Password</a>
+          <a href="#" class="px-4 py-2 hover:bg-gray-100">Cart</a>
+          <a href="logout.html" class="px-4 py-2 hover:bg-gray-100">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    const profileButton = document.getElementById('profileButton');
+    const profileMenu = document.getElementById('profileMenu');
+
+    profileButton.addEventListener('click', () => {
+      profileMenu.classList.toggle('hidden');
+    });
+
+    window.addEventListener('click', function (e) {
+      if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+        profileMenu.classList.add('hidden');
+      }
+    });
+  </script>
+
+
+  <!-- Page content -->
+  <!-- <main class="p-6">
+    <h1 class="text-2xl font-bold">Welcome to PawPromise</h1>
+    <p>Your dashboard and pet food store.</p>
+  </main> -->
+
+
   <section class="mx-4 md:mx-8 lg:mx-20">
-    <nav class="flex items-center justify-between pt-6 md:pt-10 pb-5 relative">
-      <div class="flex items-center space-x-4">
-        <button><i class="fa-solid fa-paw"></i></button>
-        <button>
-          <h1 class="text-xl font-bold text-gray-800">Peddy</h1>
-        </button>
-      </div>
-      <div class="nav-links hidden md:flex items-center space-x-4">
-        <button>Home</button>
-        <button>Shop</button>
-        <button>Contact</button>
-      </div>
-      <button class="menu-toggle md:hidden" id="menuToggle">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <div class="mobile-menu hidden" id="mobileMenu">
-        <button class="hover:bg-gray-100 p-2 rounded">Home</button>
-        <button class="hover:bg-gray-100 p-2 rounded">Shop</button>
-        <button class="hover:bg-gray-100 p-2 rounded">Contact</button>
-        <button class="hover:bg-gray-100 p-2 rounded">
-          <i class="fa-regular fa-user"></i> Account
-        </button>
-      </div>
+    <nav class="flex items-center justify-between pt-1 md:pt-1 pb-5 relative">
+
       <div class="hidden md:block">
         <button>
-          <i class="fa-regular fa-user"></i>
         </button>
       </div>
     </nav>
 
     <section>
       <div class="center-container">
-        <p>Bringing Families Together</p>
+        <p class="font-medium">Bringing Families Together</p>
         <h1 class="boldtext">
           <span>Your Path to Adoption</span>
           <span>Starts Here</span>
@@ -202,6 +238,7 @@
   </div>
 
   <script src="/js/script.js"></script>
+  <!-- <script src="/js/navbar.js"></script> -->
 </body>
 
 </html>
