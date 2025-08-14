@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Login | PawPromise</title>
   <link rel="stylesheet" href="/css/login.css" />
-  <script type="module" src="/auth/login.js" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Chewy&display=swap" rel="stylesheet">
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- FontAwesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Chewy&display=swap" rel="stylesheet">
+
+  <!-- Firebase Login JS -->
+  <script type="module" src="/auth/firebaseLogin.js"></script>
 </head>
+<<<<<<< HEAD
+
+<body>
+=======
 <body style="background-color: honeydew;">
+>>>>>>> ab3682eeea7c08ad443df35e6eb75259546b4171
   <div class="login-container">
     <div class="logo">
       <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="PawPromise Logo">
@@ -21,7 +34,7 @@
       <div class="input-group">
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="Enter your email" required>
-        <span id="emailError">Invalid email</span>
+        <span id="emailError" style="display:none; color:red; font-size:0.85rem;">Invalid email</span>
       </div>
 
       <div class="input-group password-group">
@@ -31,10 +44,11 @@
       </div>
 
       <button type="submit" class="btn">Log In</button>
-      <a href="#" class="forgot">Forgot Password?</a>
+      <a href="#" id="forgotPassword" class="forgot">Forgot Password?</a>
     </form>
 
     <p class="signup-text">Don't have an account? <a href="register.html">Sign Up</a></p>
   </div>
 </body>
+
 </html>
