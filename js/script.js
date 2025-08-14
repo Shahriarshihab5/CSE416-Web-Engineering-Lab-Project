@@ -6,7 +6,7 @@ const pets = [
     year: 2024,
     gender: "Female",
     price: 199,
-    image: "./assets/057c756e8344b2a85291bffccc5b788c.webp"
+    image: "/assets/057c756e8344b2a85291bffccc5b788c.webp"
   },
   {
     name: "Mister Tartosh",
@@ -15,7 +15,7 @@ const pets = [
     year: 2024,
     gender: "Female",
     price: 199,
-    image: "./assets/cute-dog-breeds-we-can-t-get-enough-of-4589340-18-d7d08269a41249d180fd1e0a249c6fcb.webp"
+    image: "/assets/cute-dog-breeds-we-can-t-get-enough-of-4589340-18-d7d08269a41249d180fd1e0a249c6fcb.webp"
   },
   {
     name: "Whiskers",
@@ -24,7 +24,7 @@ const pets = [
     year: 2023,
     gender: "Male",
     price: 99,
-    image: "./assets/striped-with-white-a-cat.webp"
+    image: "/assets/striped-with-white-a-cat.webp"
   },
   {
     name: "Fluffy",
@@ -33,7 +33,7 @@ const pets = [
     year: 2022,
     gender: "Female",
     price: 49,
-    image: "./assets/Rbbit.jpeg"
+    image: "/assets/Rbbit.jpeg"
   },
   {
     name: "Whiskers",
@@ -51,7 +51,7 @@ const pets = [
     year: 2024,
     gender: "Female",
     price: 199,
-    image: "./assets/white-bully-kutta-stands-outside.webp"
+    image: "/assets/white-bully-kutta-stands-outside.webp"
   }
 ];
 

@@ -1,0 +1,31 @@
+<div id="profileMenu" class="hidden absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md flex flex-col z-50">
+  <a href="#" id="profileLink" class="px-4 py-2 hover:bg-gray-100">Profile</a>
+  <a href="#" id="updatePasswordLink" class="px-4 py-2 hover:bg-gray-100">Update Password</a>
+  <a href="#" id="cartLink" class="px-4 py-2 hover:bg-gray-100">Cart</a>
+  <a href="#" id="logoutLink" class="px-4 py-2 hover:bg-gray-100">Logout</a>
+</div>
+
+<script>
+  // Profile dropdown
+  const profileButton = document.getElementById('profileButton');
+  const profileMenu = document.getElementById('profileMenu');
+
+  profileButton.addEventListener('click', () => {
+    profileMenu.classList.toggle('hidden');
+  });
+
+  window.addEventListener('click', function(e){
+    if (!profileButton.contains(e.target) && !profileMenu.contains(e.target)) {
+      profileMenu.classList.add('hidden');
+    }
+  });
+
+  // Logout functionality
+  const logoutLink = document.getElementById('logoutLink');
+  logoutLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('user');
+    sessionStorage.clear();
+    window.location.href = 'index.html'; // redirect after logout
+  });
+</script>
