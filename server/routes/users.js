@@ -33,4 +33,19 @@ router.post("/register", async (req, res) => {
   }
 });
 
+
+// get all users
+router.get("/all-user", async (req, res) => { 
+  try {
+    const users = await MUser.find();
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: "No users found" });
+    }
+    res.status(200).json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+})
+
 export default router;

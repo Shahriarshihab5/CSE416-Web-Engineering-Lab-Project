@@ -10,7 +10,3 @@ const userSchema = new mongoose.Schema({
 
 
 export const  MUser = mongoose.model("User", userSchema);
-
-
-
-
