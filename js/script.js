@@ -1,8 +1,8 @@
 const pets = [
   {
-    name: "Mister Tartosh",
-    type: "dog",
-    breed: "Golden Retriever",
+    name: "Whiskers",
+    type: "Persian Cat",
+    breed: "Persian Cat",
     year: 2024,
     gender: "Female",
     price: 199,
@@ -18,7 +18,7 @@ const pets = [
     image: "/assets/cute-dog-breeds-we-can-t-get-enough-of-4589340-18-d7d08269a41249d180fd1e0a249c6fcb.webp"
   },
   {
-    name: "Whiskers",
+    name: "Luna",
     type: "cat",
     breed: "Persian Cat",
     year: 2023,
@@ -36,7 +36,7 @@ const pets = [
     image: "/assets/Rbbit.jpeg"
   },
   {
-    name: "Whiskers",
+    name: "Bella",
     type: "cat",
     breed: "Persian Cat",
     year: 2023,
@@ -45,9 +45,9 @@ const pets = [
     image: "/assets/worlds-most-beautiful-cats-111-57fe26438b6c7__700.webp"
   },
   {
-    name: "Mister Tartosh",
+    name: "Cooper",
     type: "dog",
-    breed: "Golden Retriever",
+    breed: "Siberian Husky",
     year: 2024,
     gender: "Female",
     price: 199,
