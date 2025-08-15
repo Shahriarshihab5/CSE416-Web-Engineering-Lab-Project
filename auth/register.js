@@ -51,11 +51,21 @@ signupForm.addEventListener("submit", async (e) => {
         const user = userCredential.user;
         console.log("Registered user:", user);
 
-         await fetch("/api/users/register", {
+        if (!user && !user.email) {
+            Swal.fire("Error", "User registration failed. Please try again.", "error");
+        }
+
+        //  post request to save user data in the database
+        await fetch("http://localhost:8000/api/users/register", {  
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email })
-        });
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+            }),
+        })
 
         Swal.fire({
             toast: true,
@@ -65,7 +75,7 @@ signupForm.addEventListener("submit", async (e) => {
             showConfirmButton: false,
             timer: 1500
         }).then(() => {
-            window.location.href = "/user/login.html";
+            // window.location.href = "/user/login.html";
         });
     } catch (error) {
         let message = "";

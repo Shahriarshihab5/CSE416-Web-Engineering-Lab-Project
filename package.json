@@ -1,4 +1,5 @@
 {
+  
   "name": "web-lab-project",
   "version": "1.0.0",
   "description": "Backend server for Web Lab Project using Node.js, Express, and MongoDB",
@@ -12,7 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/Shahriarshihab5/CSE416-Web-Engineering-Lab-Project.git"
   },
-  "keywords": ["nodejs", "express", "mongodb", "mongoose", "web-lab-project"],
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "web-lab-project"
+  ],
   "author": "Your Name",
   "license": "ISC",
   "bugs": {
