@@ -43,7 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const user = userCredential.user;
         localStorage.setItem("user", JSON.stringify({ uid: user.uid, email: user.email }));
         Swal.fire({ icon: 'success', title: 'Login Successful!', toast: true, position: 'top-end', timer: 1500, showConfirmButton: false })
-          .then(() => window.location.href = "/pages/home.html");
+          .then(() => {
+
+            if( user.email === "admin@gmail.com")  {
+              window.location.href = "http://127.0.0.1:5500/components/admin/admin.html#"
+            }else{
+               window.location.href = "/pages/home.html"
+            };
+           
+          });
       })
       .catch(err => {
         Swal.fire("Login Failed", err.message, "error");

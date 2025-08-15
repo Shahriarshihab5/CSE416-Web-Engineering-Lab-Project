@@ -75,7 +75,7 @@ signupForm.addEventListener("submit", async (e) => {
             showConfirmButton: false,
             timer: 1500
         }).then(() => {
-            // window.location.href = "/user/login.html";
+            window.location.href = "/user/login.html";
         });
     } catch (error) {
         let message = "";
