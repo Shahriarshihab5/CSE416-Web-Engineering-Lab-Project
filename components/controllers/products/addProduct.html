@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/components/admin/admin.css">
+    <link rel="stylesheet" href="/components/controllers/products/addProduct.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo" id="logo">
+            <a href="/pages/home.html" id="logoLink">
+                <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="logo"
+                    class="w-10 h-10 rounded-full border-2 border-blue-200" id="logoImage">
+                <!-- Tail wind font size class -->
+                <h1 class="brand-title">PawPromise Admin</h1>
+            </a>
+        </div>
+        <nav id="nav-links">
+            <a href="/components/admin/admin.html">Dashboard</a>
+            <a href="/components/admin/user.html">Users</a>
+            <a href="/components/controllers/products.html">Products</a>
+            <a href="#">Orders</a>
+            <a href="#" class="active">Add Products</a>
+            <a href="#">Settings</a>
+            <a href="#" id="logoutLink">Logout</a>
+        </nav>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <header class="dashboard-header">
+
+        </header>
+
+        <!--  Tab  -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="addProduct-food">Food</button>
+            <button class="tab-btn" data-tab="addProduct-medicine">Medicine</button>
+            <button class="tab-btn" data-tab="addProduct-machine">Doctor</button>
+        </div>
+
+        <!-- Tab container -->
+
+
+        <div class="tab-content">
+            <!-- Food -->
+            <div class="tab-panel" id="addProduct-food">
+                <div class="addProduct-container">
+                    <h2>Add Food Product</h2>
+
+                    <form id="addProductForm" class="addProduct-form">
+                        <section>
+                            <label for="addProductAnimal">Animal:</label>
+                            <select id="addProductAnimal" name="animal" required>
+                                <option value="">-- Select Type --</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                            </select>
+                        </section>
+
+                        <section>
+                            <label for="addProductName">Product Name:</label>
+                            <input type="text" id="addProductName" name="name" placeholder="Enter product name"
+                                required>
+                        </section>
+
+                        <section>
+                            <label for="addProductPrice">Price:</label>
+                            <input type="number" id="addProductPrice" name="price" placeholder="Enter price" required>
+                        </section>
+
+                        <section>
+                            <label for="addProductImage">Image URL:</label>
+                            <input type="url" id="addProductImage" name="image" placeholder="Paste image link">
+                        </section>
+
+                        <section>
+                            <button type="submit" class="addProduct-btnSubmit">Add Food</button>
+                        </section>
+
+                        <p id="addProductMsg" class="addProduct-msg"></p>
+                    </form>
+
+                </div>
+            </div>
+
+
+            <!-- This is medicine container -->
+            <div class="tab-panel" id="addProduct-medicine" style="display:none">
+                <div class="addProduct-container">
+                    <h2>Add Medicine Product</h2>
+
+                    <form id="addProductFormMedicine" class="addProduct-form">
+                        <!-- Type (hidden, always medicine) -->
+                       
+
+                        <section>
+                            <label for="addProductAnimal">Animal:</label>
+                            <select id="addProductAnimal" name="animal" required>
+                                <option value="">-- Select Animal --</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                                <option value="cat">Bird</option>
+                            </select>
+                        </section>
+
+                        <section>
+                            <label for="addProductName">Medicine Name:</label>
+                            <input type="text" id="addProductName" name="name" placeholder="Enter medicine name"
+                                required>
+                        </section>
+
+                        <section>
+                            <label for="addProductPrice">Price:</label>
+                            <input type="number" id="addProductPrice" name="price" placeholder="Enter price" required>
+                        </section>
+
+                        <section>
+                            <label for="addProductImage">Image URL:</label>
+                            <input type="url" id="addProductImage" name="img" placeholder="Paste image link">
+                        </section>
+
+                        <section>
+                            <label for="addProductDesc">Description:</label>
+                            <textarea id="addProductDesc" name="desc"
+                                placeholder="Enter medicine description"></textarea>
+                        </section>
+
+                        <section>
+                            <button type="submit" class="addProduct-btnSubmit">Add Medicine</button>
+                        </section>
+
+                        <p id="addProductMsg" class="addProduct-msg"></p>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Machine -->
+
+            <div class="tab-panel" id="addProduct-machine" style="display:none">
+                <div class="addProduct-container">
+                    <h2>Add Doctor Product</h2>
+
+                    <form id="addProductFormMachine" class="addProduct-form">
+                        <!-- Type (hidden, always machine) -->
+                        <input type="hidden" id="addProductType" name="type" value="machine">
+
+                        <section>
+                            <label for="addProductName">Doctor Name:</label>
+                            <input type="text" id="addProductName" name="name" placeholder="Enter doctor name"
+                                required>
+                        </section>
+
+                        <section>
+                            <label for="addProductPrice">Price:</label>
+                            <input type="number" id="addProductPrice" name="price" placeholder="Enter price" required>
+                        </section>
+
+                        <section>
+                            <label for="addProductImage">Image URL:</label>
+                            <input type="url" id="addProductImage" name="img" placeholder="Paste image link">
+                        </section>
+
+                        <section>
+                            <label for="addProductDesc">Description:</label>
+                            <textarea id="addProductDesc" name="desc"
+                                placeholder="Enter doctor description"></textarea>
+                        </section>
+
+                        <section>
+                            <button type="submit" class="addProduct-btnSubmit">Add Doctor</button>
+                        </section>
+        </div>
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script defer src="/components/admin/admin.js"></script>
+    <!-- <script defer src="/components/controllers/food/addFood.js"></script> -->
+
+
+
+    <script>
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (logoutLink) {
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault(); // prevent default link behavior
+
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You will be logged out!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, logout!'
+                })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            // Clear storage
+                            localStorage.removeItem("user");
+                            sessionStorage.clear();
+
+                            Swal.fire(
+                                'Logged out!',
+                                'See you next time!',
+                                'success'
+                            ).then(() => {
+                                location.reload(); // Refresh page
+                                window.location.href = "/pages/home.html"; // Redirect to home page
+                            });
+                        }
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

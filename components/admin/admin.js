@@ -1,27 +1,26 @@
-const getAllUsers = async () => { 
-    try {
-        const res = await fetch("http://localhost:8000/api/users/all-user");
-        const data = await res.json();
-        console.log("Fetched users:", data);
-        return data;
-    } catch (error) {
-        console.error("Error fetching users:", error);
-        return [];
-    }
+const getAllUsers = async () => {
+  try {
+    const res = await fetch("http://localhost:8000/api/users/all-user");
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return [];
+  }
 };
 
 const loadUsers = async () => {
-    // Get user from local storage
-    const user = JSON.parse(localStorage.getItem("user"));
+  // Get user from local storage
+  const user = JSON.parse(localStorage.getItem("user"));
 
-    // if this user is not admin or not logged in, show a custom popup and redirect
-    //  if this user is not admin this condition wiil be true. if the user is not admin , this condtion will be false and ignore the imidiate (if) code below
-    if (!user || user.email !== "admin@gmail.com") {
-        console.log("User is not admin or not logged in:", user);
+  // if this user is not admin or not logged in, show a custom popup and redirect
+  //  if this user is not admin this condition wiil be true. if the user is not admin , this condtion will be false and ignore the imidiate (if) code below
+  if (!user || user.email !== "admin@gmail.com") {
+    console.log("User is not admin or not logged in:", user);
 
-        // Create custom popup
-        const popup = document.createElement("div");
-        popup.innerHTML = `
+    // Create custom popup
+    const popup = document.createElement("div");
+    popup.innerHTML = `
             <div style="
                 position: fixed;
                 top: 50%;
@@ -39,41 +38,46 @@ const loadUsers = async () => {
                 <p>You do not have permission to access this page.</p>
             </div>
         `;
-        document.body.appendChild(popup);
+    document.body.appendChild(popup);
 
-        // Redirect to home after 2 seconds
-        setTimeout(() => {
-            window.location.href = "http://127.0.0.1:5500/index.html"; // Home page
-        }, 10000);
+    // Redirect to home after 2 seconds
+    setTimeout(() => {
+      window.location.href = "http://127.0.0.1:5500/index.html"; // Home page
+    }, 10000);
 
-        return;
-    }
+    return;
+  }
 
-    // Fetch users
-    const users = await getAllUsers();
-    const tableBody = document.getElementById("userTable");
+  // Fetch users
+  const users = await getAllUsers();
+  const tableBody = document.getElementById("userTable");
 
-    // Clear any existing rows
-    tableBody.innerHTML = "";
+  // Clear any existing rows
+  tableBody.innerHTML = "";
 
-    // Append new rows
-    users.forEach(u => {
-        const row = `
+  // Append new rows
+  users.forEach((u) => {
+    const row = `
             <tr>
                 <td>${u.name}</td>
                 <td>${u.email}</td>
             </tr>`;
-        tableBody.innerHTML += row;
-    });
+    tableBody.innerHTML += row;
+  });
 
-    // Update stats
-    document.getElementById("totalUsers").innerText = users.length;
-    document.getElementById("totalOrders").innerText = 0; 
-    document.getElementById("totalRevenue").innerText = "0.00 Tk"; 
+  // Update stats
+  document.getElementById("totalUsers").innerText = users.length;
+  document.getElementById("totalOrders").innerText = 0;
+  document.getElementById("totalRevenue").innerText = "0.00 Tk";
 };
 
 // Run on page load
 document.addEventListener("DOMContentLoaded", loadUsers);
+
+
+
+
+// Add Product Form Submission
 
 const addProductForm = document.getElementById("addProductForm");
 const msg = document.getElementById("msg");
@@ -81,37 +85,32 @@ const msg = document.getElementById("msg");
 addProductForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Gather form data
-  const type = document.getElementById("productType").value;
-  const animal = document.getElementById("productAnimal").value.trim();
-  const name = document.getElementById("productName").value.trim();
-  const price = parseFloat(document.getElementById("productPrice").value);
-  const image = document.getElementById("productImage").value.trim();
-  const desc = document.getElementById("productDesc").value.trim();
+  // Create FormData object
+  const formData = new FormData(e.target);
 
-  if (!animal || !name || isNaN(price)) {
-    Swal.fire({
-      icon: "error",
-      title: "Invalid Input",
-      text: "Please fill all required fields correctly."
-    });
-    return;
-  }
+  // Convert to object
+  const data = Object.fromEntries(formData.entries());
 
-  // Prepare payload
-  const payload = { type, animal, name, price };
-  if (type === "food") payload.image = image;
-  if (type === "medicine") {
-    payload.img = image;
-    payload.desc = desc;
+  console.log("Form Data:", data);
+
+
+
+  const formattedData = {
+
+    name: data.productName,
+    ...data,
   }
 
   try {
-    const res = await fetch("http://localhost:5000/api/add-products/add-product", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+    const res = await fetch(
+      "http://localhost:8000/api/add-products/add-product",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formattedData),
+      }
+    );
+
 
     const data = await res.json();
 
@@ -119,7 +118,7 @@ addProductForm.addEventListener("submit", async (e) => {
       Swal.fire({
         icon: "success",
         title: "Product Added",
-        text: `${name} has been added successfully!`
+        text: `${data.name} has been added successfully!`,
       });
 
       // Reset form
@@ -128,7 +127,7 @@ addProductForm.addEventListener("submit", async (e) => {
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: data.message || "Something went wrong."
+        text: data.message || "Something went wrong.",
       });
     }
   } catch (err) {
@@ -136,7 +135,93 @@ addProductForm.addEventListener("submit", async (e) => {
     Swal.fire({
       icon: "error",
       title: "Server Error",
-      text: "Could not connect to the server."
+      text: "Could not connect to the server.",
     });
   }
 });
+
+
+// add medicine form submission
+
+const addMedicineForm = document.getElementById("addProductFormMedicine");
+const msgMedicine = document.getElementById("msgMedicine"); 
+addMedicineForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Create FormData object
+  const formData = new FormData(e.target);
+
+  // Convert to object
+  const data = Object.fromEntries(formData.entries());
+
+  console.log("Medicine Form Data:", data);
+
+  const formattedData = {
+    ...data,
+  }
+
+  // console.log("Formatted Medicine Data:", formattedData);
+
+  // return
+
+  try {
+    const res = await fetch(
+      "http://localhost:8000/api/medicines/add-medicine",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formattedData),
+      }
+    );
+
+    const data = await res.json();
+
+    if (res.ok) {
+      Swal.fire({
+        icon: "success",
+        title: "Medicine Added",
+        text: `${data.name} has been added successfully!`,
+      });
+
+      // Reset form
+      addMedicineForm.reset();
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: data.message || "Something went wrong.",
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    Swal.fire({
+      icon: "error",
+      title: "Server Error",
+      text: "Could not connect to the server.",
+    });
+  }
+});
+
+
+
+// Tab Functionality
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tab-btn");
+  const panels = document.querySelectorAll(".tab-panel");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      // Remove active class from all tabs
+      tabs.forEach(t => t.classList.remove("active"));
+      // Hide all panels
+      panels.forEach(p => p.style.display = "none");
+
+      // Add active to clicked tab
+      tab.classList.add("active");
+      // Show corresponding panel using prefixed id
+      document.getElementById(tab.dataset.tab).style.display = "block";
+    });
+  });
+
+})

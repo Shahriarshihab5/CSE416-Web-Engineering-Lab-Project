@@ -1,0 +1,113 @@
+.addProduct-container {
+  background: #fff;
+  width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.addProduct-container h2 {
+  margin-bottom: 1rem;
+  color: #0b3c49;
+}
+
+.addProduct-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.addProduct-form label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.addProduct-form input,
+.addProduct-form select,
+.addProduct-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.addProduct-form input:focus,
+.addProduct-form select:focus,
+.addProduct-form textarea:focus {
+  border-color: #00a896;
+  outline: none;
+}
+
+.addProduct-medicineOnly {
+  display: none;
+}
+
+.addProduct-btnSubmit {
+  padding: 0.9rem;
+  border: none;
+  background: #00a896;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.addProduct-btnSubmit:hover {
+  background: #028080;
+}
+
+.addProduct-msg {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.addProduct-msg.error {
+  color: #d62828;
+}
+.addProduct-msg.success {
+  color: #2a9d8f;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid #2c3e50
+}
+
+.tab-btn.active {
+  padding: 0.9rem;
+  border: none;
+  background-color: #2c3e50;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.tab-btn:hover {
+  background-color: #34495e;
+  color: white;
+}
+
+.tab-btn.active:hover {
+  background-color: #4e6d8b;
+  color: white;
+}
+.tab-panel {
+  margin-top: 20px;
+}
+

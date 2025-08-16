@@ -1,0 +1,66 @@
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+
+  border-radius: 8px;
+  width: 33% !important;
+  background: white;
+  padding: 20px;
+  flex: 1;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab:hover {
+  background: #526477;
+  color: white;
+}
+
+.tab.active {
+  background: #2c3e50;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+tr.product-row:hover {
+  background: #312f2f !important;
+  color: white;
+}
+
+.action-icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+#delete-icon:hover path {
+  color: red;
+  
+}
+
+#edit-icon:hover path {
+  color: #2a9d8f;
+  
+}
+
+th.action-th {
+  text-align: center;
+}

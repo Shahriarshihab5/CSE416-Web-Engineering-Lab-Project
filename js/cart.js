@@ -6,3 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 <script src="/js/navbar.js"></script>
+
+
+
+

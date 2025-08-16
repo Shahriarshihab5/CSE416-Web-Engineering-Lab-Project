@@ -38,7 +38,8 @@ function renderProducts(products) {
       <img src="${p.img}" alt="${p.name}" class="mb-2 rounded">
       <h3 class="font-bold">${p.name}</h3>
       <p class="text-green-600 font-semibold">${p.price} Tk</p>
-      <button class="buy-btn mt-2 bg-blue-500 text-white px-3 py-1 rounded w-full">Buy</button>
+      <p class="text-black-100 font-small text-xs">${p.desc}</p>
+      <button class="buy-btn mt-2 bg-blue-500 text-white px-3 py-1 rounded w-full">Add To Cart</button>
     `;
 
     // Buy button alert

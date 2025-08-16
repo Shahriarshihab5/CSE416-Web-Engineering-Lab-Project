@@ -10,7 +10,8 @@ import productsRoutes from "./routes/products.js";
 import medicineRoutes from "./routes/medicines.js";
 import homesRoutes from "./routes/homes.js";
 import addProductsRoutes from "./routes/addProducts.js";
-
+import addMedicinesRoutes from "./routes/medicines.js";
+import ordersRoutes from './routes/orders.js'
 dotenv.config();
 
 const app = express();
@@ -34,6 +35,8 @@ app.use("/api/products", productsRoutes);
 app.use("/api/medicines", medicineRoutes);
 app.use("/api/homes", homesRoutes);
 app.use("/api/add-products", addProductsRoutes);
+app.use("/api/add-medicines", addMedicinesRoutes);
+app.use("/api/order", ordersRoutes);
 
 // Default route
 app.get("/", (req, res) => {
