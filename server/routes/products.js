@@ -1,5 +1,5 @@
 import express from "express";
-import MProduct from "../models/Products.js"; // ✅ Make sure your model is default exported
+import MProduct from "../models/Products.js"; // Make sure your model is default exported
 
 const router = express.Router();
 

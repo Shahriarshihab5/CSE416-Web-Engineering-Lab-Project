@@ -1,30 +1,58 @@
-const sortAnimal = document.getElementById('sortAnimal');
-const sortPrice = document.getElementById('sortPrice');
-const foodList = document.getElementById('foodList');
-const items = Array.from(foodList.children);
+// const foodList = document.getElementById("foodList");
+// const sortAnimal = document.getElementById("sortAnimal");
+// const sortPrice = document.getElementById("sortPrice");
 
-function updateDisplay() {
-  const animal = sortAnimal.value;
-  items.forEach(item => {
-    item.style.display = animal && item.dataset.animal !== animal ? 'none' : '';
+let allProducts = []; // store fetched products
+
+// Fetch products from API
+async function fetchProducts() {
+  try {
+    const res = await fetch("http://localhost:8000/api/products/get-all-products");
+    allProducts = await res.json();
+    renderProducts(allProducts);
+  } catch (err) {
+    console.error("Error fetching products:", err);
+  }
+}
+
+// Render products to DOM
+function renderProducts(products) {
+  foodList.innerHTML = ""; // clear existing
+  products.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "food-card border rounded p-4";
+    div.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" class="w-full h-40 object-contain">
+        <h3 class="text-lg font-bold mt-2">${p.name}</h3>
+        <p>Price: ${p.price} TK</p>
+        <button class="mt-2 bg-blue-500 text-white px-3 py-1 rounded">Add to Cart</button>
+      `;
+    foodList.appendChild(div);
   });
 }
 
-sortAnimal.addEventListener('change', () => {
-  updateDisplay();
-  sortVisibleItems();
-});
+// Apply sorting
+function applySorting() {
+  let filtered = [...allProducts];
 
-sortPrice.addEventListener('change', () => {
-  sortVisibleItems();
-});
-
-function sortVisibleItems() {
-  const visibleItems = items.filter(item => item.style.display !== 'none');
-  if (sortPrice.value === 'low-high') {
-    visibleItems.sort((a, b) => a.dataset.price - b.dataset.price);
-  } else if (sortPrice.value === 'high-low') {
-    visibleItems.sort((a, b) => b.dataset.price - a.dataset.price);
+  // Filter by animal
+  if (sortAnimal.value) {
+    filtered = filtered.filter(p => p.animal === sortAnimal.value);
   }
-  visibleItems.forEach(item => foodList.appendChild(item));
+
+  // Sort by price
+  if (sortPrice.value === "low-high") {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (sortPrice.value === "high-low") {
+    filtered.sort((a, b) => b.price - a.price);
+  }
+
+  renderProducts(filtered);
 }
+
+// Event listeners
+sortAnimal.addEventListener("change", applySorting);
+sortPrice.addEventListener("change", applySorting);
+
+// Init
+fetchProducts();

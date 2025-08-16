@@ -31,7 +31,8 @@ body {
     border-radius: 5px;
 }
 
-.sidebar nav a:hover, .sidebar nav a.active {
+.sidebar nav a:hover,
+.sidebar nav a.active {
     background-color: #34495e;
 }
 
@@ -65,14 +66,14 @@ header input {
     flex: 1;
     text-align: center;
     border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .table-section {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 table {
@@ -80,7 +81,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
@@ -89,21 +91,105 @@ th {
     background-color: #f9f9f9;
     text-align: left;
 }
-.logo{
+
+.logo {
     display: flex;
 }
 
-#logoImage{
+/* Form card styling */
+.form-card {
+    max-width: 500px;
+    margin: 15px auto;
+    padding: 20px 25px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.form-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #0e7a81;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #0e7a81;
+    box-shadow: 0 0 5px rgba(14, 122, 129, 0.3);
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #0e7a81;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: #0c6569;
+    transform: translateY(-2px);
+}
+
+.form-msg {
+    text-align: center;
+    font-weight: 600;
+    margin-top: 10px;
+    color: green;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 50%;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+
+#logoImage {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     border: 2px solid #6ab7e2;
 }
+
 .brand-title {
     font-size: 1.05rem;
     color: #6ab7e2;
     margin-left: 10px;
 }
+
 #logoLink {
     text-decoration: none;
     display: flex;
