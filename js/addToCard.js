@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Show SweetAlert modal
                 Swal.fire({
-                    title: "Your Cart",
+                    title: "Your Product List",
                     html: cartHTML,
                     width: '80%',
                     showCloseButton: true,
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cancelButtonText: 'Close'
                 }).then(result => {
                     if (result.isConfirmed) {
-                        console.log("Proceed to checkout", cart);
+                        window.location.href = 'http://127.0.0.1:5500/pages/addCart.html'
                     }
                 });
             });

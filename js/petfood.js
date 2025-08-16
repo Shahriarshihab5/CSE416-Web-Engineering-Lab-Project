@@ -26,7 +26,7 @@ function renderProducts(products) {
                 <img src="${p.image}" alt="${p.name}" class="w-full h-40 object-contain">
                 <h3 class="text-lg font-bold mt-2">${p.name}</h3>
                 <p>Price: ${p.price} TK</p>
-                <button class="buy-btn mt-2 bg-blue-500 text-white px-3 py-1 rounded w-full">Add To Cart</button>
+                <button class="add-to-cart mt-2 bg-blue-500 text-white px-3 py-1 rounded">Add to Cart</button>
             `;
     foodList.appendChild(div);
   });

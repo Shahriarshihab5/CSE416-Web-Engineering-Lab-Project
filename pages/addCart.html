@@ -75,7 +75,7 @@
                 <div class="checkout-container">
                     <!-- Left: Customer Info -->
                     <div class="checkout-left">
-                        <h3>Customer Details</h3>
+                        <h3 class="heading">Customer Details</h3>
                         <form id="checkoutForm">
                             <label>Name:</label>
                             <input type="text" name="name" placeholder="Enter your name" required>
@@ -95,8 +95,8 @@
 
                     <!-- Right: Cart Details -->
                     <div class="checkout-right">
-                        <h2>Your Selected Product</h2>
-                        <div id="cartDetails"></div>
+                        <h3 class="heading">Your Selected Product</h2>
+                            <div id="cartDetails"></div>
                     </div>
                 </div>
             </div>
@@ -139,7 +139,12 @@
             gap: 20px;
             padding: 20px;
         }
-        
+
+        h3.heading  {
+            font-size: 1.5rem !important;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
 
         .checkout-left,
         .checkout-right {
@@ -182,20 +187,23 @@
 
 
 
+
+    <!-- Library Import -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Checkout Page -->
 
-   <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const cartDetails = document.getElementById("cartDetails");
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartDetails = document.getElementById("cartDetails");
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    function renderCart() {
-        if(cart.length === 0) {
-            cartDetails.innerHTML = "<p>Your cart is empty!</p>";
-            return;
-        }
+            function renderCart() {
+                if (cart.length === 0) {
+                    cartDetails.innerHTML = "<p>Your cart is empty!</p>";
+                    return;
+                }
 
-        let html = `<table>
+                let html = `<table>
             <thead>
                 <tr>
                     <th>Image</th>
@@ -206,69 +214,76 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tr>
             </thead>
             <tbody>`;
-        let totalAmount = 0;
+                let totalAmount = 0;
 
-        cart.forEach(item => {
-            const subtotal = item.price * item.quantity;
-            totalAmount += subtotal;
-            html += `<tr>
+                cart.forEach(item => {
+                    const subtotal = item.price * item.quantity;
+                    totalAmount += subtotal;
+                    html += `<tr>
                 <td><img src="${item.image}" width="50"/></td>
                 <td>${item.name}</td>
                 <td>${item.price.toFixed(2)}</td>
                 <td>${item.quantity}</td>
                 <td>${subtotal.toFixed(2)}</td>
             </tr>`;
-        });
-
-        html += `</tbody></table>`;
-        html += `<p style="text-align:right; font-weight:bold;">Total: ${totalAmount.toFixed(2)}</p>`;
-        cartDetails.innerHTML = html;
-    }
-
-    renderCart();
-
-    // Handle order submission
-    const checkoutForm = document.getElementById("checkoutForm");
-    checkoutForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const formData = new FormData(checkoutForm);
-        const customer = Object.fromEntries(formData.entries());
-
-        const orderData = {
-            customer,
-            cart,
-            totalAmount: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
-        };
-
-        try {
-            const res = await fetch("http://localhost:8000/api/orders/create-order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(orderData)
-            });
-
-            const result = await res.json();
-            if(res.ok) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Order placed successfully!",
-                    showConfirmButton: false,
-                    timer: 2000
                 });
-                cart = [];
-                localStorage.removeItem("cart");
-                renderCart();
-                checkoutForm.reset();
-            } else {
-                Swal.fire({ icon: "error", title: result.message || "Failed to place order" });
+
+                html += `</tbody></table>`;
+                html += `<p style="text-align:right; font-weight:bold;">Total: ${totalAmount.toFixed(2)}</p>`;
+                cartDetails.innerHTML = html;
             }
-        } catch(err) {
-            console.error(err);
-            Swal.fire({ icon: "error", title: "Server error!" });
-        }
-    });
-});
-</script>
+
+            renderCart();
+
+            // Handle order submission
+            const checkoutForm = document.getElementById("checkoutForm");
+            checkoutForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const formData = new FormData(checkoutForm);
+                const customer = Object.fromEntries(formData.entries());
+
+                const orderData = {
+                    customer,
+                    products: cart,
+                    totalAmount: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+                };
+
+                console.log(orderData);
+
+                // return
+
+                try {
+                    const res = await fetch("http://localhost:8000/api/order/create-order", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(orderData)
+                    });
+
+                    const result = await res.json();
+                    if (res.ok) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Order placed successfully!",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        cart = [];
+                        localStorage.removeItem("cart");
+                        renderCart();
+                        checkoutForm.reset();
+                        setTimeout(() => {
+                            window.location.href = 'http://127.0.0.1:5500/pages/home.html'
+                        }, 4000);
+                    } else {
+                        Swal.fire({ icon: "error", title: result.message || "Failed to place order" });
+                    }
+                } catch (err) {
+                    console.error(err);
+                    Swal.fire({ icon: "error", title: "Server error!" });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
