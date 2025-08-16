@@ -1,6 +1,0 @@
-// At top of pages/cart.html
-const user = JSON.parse(localStorage.getItem('user'));
-if (!user) {
-  alert("Please login to access the cart!");
-  window.location.href = '/user/login.html';
-}
