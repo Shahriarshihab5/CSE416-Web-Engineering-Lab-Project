@@ -19,6 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         logoutUser();
       };
+
+      //  add a dashabord link if the user is admin
+      if (userEmail === "admin@gmail.com") {
+        const dashboardLink = document.createElement('a');
+        dashboardLink.href = "http://127.0.0.1:5500/components/admin/admin.html#";
+        dashboardLink.textContent = "Dashboard";
+        dashboardLink.className = "px-4 py-2 hover:bg-gray-100";
+        profileMenu.prepend(dashboardLink);
+      }
     } else {
       userNameSpan.textContent = "";
       logoutLink.textContent = "Log In";
@@ -30,11 +39,35 @@ document.addEventListener('DOMContentLoaded', () => {
   function logoutUser() {
     if (!isLoggedIn) return; // prevent multiple alerts
 
-    clearTimeout(inactivityTimer); // stop the timer
-    localStorage.removeItem('user');
-    sessionStorage.clear();
-    updateNavbar(false);
-    showToast("You have been logged out. See you next time!");
+      clearTimeout(inactivityTimer); // stop the timer
+    
+   
+
+      Swal.fire({
+          title: 'Are you sure?',
+          text: "You will be logged out!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, logout!'
+      })
+      .then((result) => {
+          if (result.isConfirmed) {
+            // Clear storage
+            localStorage.removeItem('user');
+            sessionStorage.clear();
+            updateNavbar(false);
+
+            Swal.fire(
+                'Logged out!',
+                'See you next time!',
+                'success'
+            ).then(() => {
+                location.reload(); // Refresh page
+                window.location.href = "/pages/home.html"; // Redirect to home page
+            });
+          }
+      });
+    
   }
 
   function setupInactivityLogout(timeout) {

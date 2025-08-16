@@ -77,6 +77,14 @@
       color: #6ab7e2;
     }
 
+  .brand-title {
+      font-family: 'Chewy', cursive;
+      font-size: 1.8rem;
+      color: #6ab7e2;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }  
+
     @keyframes fadeIn {
       from {
         opacity: 0;

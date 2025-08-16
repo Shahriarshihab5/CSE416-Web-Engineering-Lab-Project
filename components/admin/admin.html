@@ -10,14 +10,21 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <h2>Admin Panel</h2>
-        <nav>
+        <div class="logo" id="logo">
+            <a href="/pages/home.html" id="logoLink">
+                <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="logo" class="w-10 h-10 rounded-full border-2 border-blue-200" id="logoImage">
+                <!-- Tail wind font size class -->
+                <h1 class="brand-title" >PawPromise Admin</h1>
+            </a>
+        </div>
+        <nav id="nav-links">
             <a href="#" class="active">Dashboard</a>
             <a href="#">Users</a>
             <a href="#">Products</a>
             <a href="#">Orders</a>
+            <a href="#">Add Products</a>
             <a href="#">Settings</a>
-            <a href="#">Logout</a>
+            <a href="#" id="logoutLink">Logout</a>
         </nav>
     </aside>
 
@@ -60,6 +67,41 @@
         </section>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="/components/admin/admin.js"></script>
+    <script>
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (logoutLink) {
+            logoutLink.addEventListener('click', (e) => {
+            e.preventDefault(); // prevent default link behavior
+
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You will be logged out!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, logout!'
+            })
+            .then((result) => {
+                    if (result.isConfirmed) {
+                        // Clear storage
+                        localStorage.removeItem("user");
+                        sessionStorage.clear();
+
+                        Swal.fire(
+                        'Logged out!',
+                        'See you next time!',
+                        'success'
+                        ).then(() => {
+                        location.reload(); // Refresh page
+                        window.location.href = "/pages/home.html"; // Redirect to home page
+                        });
+                    }
+                });
+            });
+        }
+    </script>
 </body>
 </html>
