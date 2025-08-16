@@ -116,7 +116,7 @@ function displayPets(petType = "all", shouldSort = false) {
   if (filteredPets.length === 0) {
     container.innerHTML = `
       <div class="w-full flex flex-col items-center justify-center mt-10 lg:mx-200">
-        <img src="./assets/seo.png" alt="No Data" class="w-20 h-20 mb-4" />
+        <img src="https://previews.123rf.com/images/blankstock/blankstock1904/blankstock190401309/123946373-no-or-stop-update-document-icon-refresh-information-file-sign-paper-page-concept-symbol.jpg" alt="No Data" class="w-20 h-20 mb-4" />
         <h2 class="text-xl font-semibold text-gray-700">No information available</h2>
         <p class="mt-2 text-center text-gray-500 max-w-lg">
           It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
