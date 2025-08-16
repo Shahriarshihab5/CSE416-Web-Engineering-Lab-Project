@@ -18,4 +18,15 @@ router.get("/get-all-medicines", async (req, res) => {
     }
 });
 
+router.post("/add-medicine", async (req, res) => {
+    try {
+        const medicine = new MMedicine(req.body);
+        await medicine.save();
+        res.status(201).json(medicine);
+    } catch (error) {
+        console.error("Error adding medicine:", error);
+        res.status(400).json({ message: error.message });
+    }
+});
+
 export default router;

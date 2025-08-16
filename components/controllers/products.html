@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/components/admin/admin.css">
+    <link rel="stylesheet" href="/components/controllers/products.css">
 </head>
 
 <body>
@@ -22,71 +23,70 @@
         </div>
         <nav id="nav-links">
             <a href="/components/admin/admin.html">Dashboard</a>
-            <a href="/components/admin/update.html">Users</a>
-            <a href="#">Products</a>
+            <a href="/components/admin/user.html">Users</a>
+            <a href="/components/controllers/products.html" class="active">Products</a>
             <a href="#">Orders</a>
-            <a href="/components/admin/addProducts.html">Add Products</a>
-            <a href="#" class="active">Update Products</a>
-            <a href="/components/admin/delete.html">Delete Products</a>
+            <a href="/components/controllers/products/addProduct.html">Add Products</a>
             <a href="#">Settings</a>
             <a href="#" id="logoutLink">Logout</a>
         </nav>
-
     </aside>
 
     <!-- Main Content -->
     <main>
-        <header class="dashboard-header">
-            <h1>Update Product</h1>
-            <input type="search" placeholder="Search..." class="search-input">
+        <header>
+            <h1>Product View</h1>
+
         </header>
 
-        <form id="updateProductForm" class="product-form">
 
-            <!-- Select product to update -->
-            <section class="card form-card">
-                <label for="selectProduct">Select Product:</label>
-                <select id="selectProduct" required>
-                    <option value="" disabled selected>Select a product</option>
-                    <!-- Options will be populated dynamically -->
-                </select>
+
+        <section class="tabs">
+            <div class="tab active" data-tab="product">Product</div>
+            <div class="tab" data-tab="medicine">Medicine</div>
+            <div class="tab" data-tab="doctor">Doctor</div>
+        </section>
+
+        <section class="table-section">
+            <section class="tab-contents">
+                <div id="product" class="tab-content active">
+                    <h3>Product Section</h3>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Animal</th>
+                                    <th>Image</th>
+                                    <th class="action-th">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productTableBody">
+                                <!-- Data will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="medicine" class="tab-content">
+                    <h3>Medicine Section</h3>
+                    <p>All medicine details go here...</p>
+                </div>
+
+                <div id="doctor" class="tab-content">
+                    <h3>Doctor Section</h3>
+                    <p>All doctor details go here...</p>
+                </div>
             </section>
-
-            <section class="card form-card">
-                <label for="updateProductName">Product Name:</label>
-                <input type="text" id="updateProductName" placeholder="Enter product name" required>
-            </section>
-
-            <section class="card form-card">
-                <label for="updateProductCategory">Category:</label>
-                <select id="updateProductCategory" required>
-                    <option value="food">Food</option>
-                    <option value="medicine">Medicine</option>
-                </select>
-            </section>
-
-            <section class="card form-card">
-                <label for="updateProductPrice">Price:</label>
-                <input type="number" id="updateProductPrice" placeholder="Enter price" required>
-            </section>
-
-            <section class="card form-card">
-                <label for="updateProductImage">Image URL:</label>
-                <input type="text" id="updateProductImage" placeholder="Paste image link">
-            </section>
-
-            <section class="card form-card">
-                <button type="submit" class="btn-submit">Update Product</button>
-            </section>
-
-            <p id="updateMsg" class="form-msg"></p>
-        </form>
+        </section>
     </main>
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script defer src="/components/admin/admin.js"></script>
+    <script src="/components/controllers/products.js"></script>
     <script>
         const logoutLink = document.getElementById('logoutLink');
 

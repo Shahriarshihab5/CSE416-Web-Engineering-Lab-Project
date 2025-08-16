@@ -17,16 +17,17 @@ async function fetchProducts() {
 
 // Render products to DOM
 function renderProducts(products) {
-  foodList.innerHTML = ""; // clear existing
+  foodList.innerHTML = "";
   products.forEach(p => {
     const div = document.createElement("div");
     div.className = "food-card border rounded p-4";
+    div.dataset.id = p._id; // store product ID
     div.innerHTML = `
-        <img src="${p.image}" alt="${p.name}" class="w-full h-40 object-contain">
-        <h3 class="text-lg font-bold mt-2">${p.name}</h3>
-        <p>Price: ${p.price} TK</p>
-        <button class="mt-2 bg-blue-500 text-white px-3 py-1 rounded">Add to Cart</button>
-      `;
+                <img src="${p.image}" alt="${p.name}" class="w-full h-40 object-contain">
+                <h3 class="text-lg font-bold mt-2">${p.name}</h3>
+                <p>Price: ${p.price} TK</p>
+                <button class="buy-btn mt-2 bg-blue-500 text-white px-3 py-1 rounded w-full">Add To Cart</button>
+            `;
     foodList.appendChild(div);
   });
 }

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/components/admin/admin.css">
+    <link rel="stylesheet" href="/components/controllers/products/addProduct.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo" id="logo">
+            <a href="/pages/home.html" id="logoLink">
+                <img src="https://cdn.vectorstock.com/i/2000v/11/62/simple-dog-logo-vector-50141162.avif" alt="logo"
+                    class="w-10 h-10 rounded-full border-2 border-blue-200" id="logoImage">
+                <!-- Tail wind font size class -->
+                <h1 class="brand-title">PawPromise Admin</h1>
+            </a>
+        </div>
+        <nav id="nav-links">
+            <a href="/components/admin/admin.html">Dashboard</a>
+            <a href="/components/admin/user.html">Users</a>
+            <a href="/components/controllers/products.html">Products</a>
+            <a href="#">Orders</a>
+            <a href="#" class="active">Add Products</a>
+            <a href="#">Settings</a>
+            <a href="#" id="logoutLink">Logout</a>
+        </nav>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+        <header class="dashboard-header">
+
+        </header>
+
+
+        <!-- Tab container -->
+
+
+        <div class="tab-content">
+            <!-- Food -->
+            <div class="tab-panel" id="updateProduct-food">
+                <div class="addProduct-container">
+                    <h2>Update Food Product</h2>
+
+                    <form id="updateProductForm" class="addProduct-form updateProduct-form">
+                        <section>
+                            <label for="updateProductAnimal">Animal:</label>
+                            <select id="updateProductAnimal" name="animal" required>
+                                <option value="">-- Select Type --</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                            </select>
+                        </section>
+
+                        <section>
+                            <label for="updateProductName">Product Name:</label>
+                            <input type="text" id="updateProductName" name="name" placeholder="Enter product name"
+                                required>
+                        </section>
+
+                        <section>
+                            <label for="updateProductPrice">Price:</label>
+                            <input type="number" id="updateProductPrice" name="price" placeholder="Enter price"
+                                required>
+                        </section>
+
+                        <section>
+                            <label for="updateProductImage">Image URL:</label>
+                            <input type="url" id="updateProductImage" name="image" placeholder="Paste image link">
+                        </section>
+
+                        <section>
+                            <button type="submit" class="addProduct-btnSubmit uupdateProduct-btnSubmit">Update
+                                Food</button>
+                        </section>
+
+                        <p id="updateProductMsg" class="updateProduct-msg"></p>
+                    </form>
+
+                </div>
+            </div>
+
+
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+    <!-- check documente read and console log  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // check the query param which is id .
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            // if productId not found show swiret alert and redirect to products page after 2 seconds
+            if (!productId) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Product ID not found!',
+                }).then(() => {
+                    window.location.href = '/components/controllers/products.html';
+                });
+
+            }
+
+
+
+            //  now fetch the product details using the productId
+            fetch(`http://localhost:8000/api/products/get-product/${productId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(product => {
+                    // Populate the form fields with the product data
+                    document.getElementById('updateProductName').value = product.name;
+                    document.getElementById('updateProductAnimal').value = product.animal;
+                    document.getElementById('updateProductPrice').value = product.price;
+                    document.getElementById('updateProductImage').value = product.image;
+                })
+                .catch(error => {
+                    console.error('Error fetching product:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Failed to fetch product details.',
+                    });
+                });
+
+            // Update Functinality. get data from form data. 
+
+            const updateProductForm = document.getElementById("updateProductForm");
+            const updateProductMsg = document.getElementById("updateProductMsg");
+
+            updateProductForm.addEventListener("submit", async (e) => {
+                e.preventDefault(); // prevent default form submission
+
+                // Create FormData object from the form
+                const formData = new FormData(updateProductForm);
+
+                // Convert to plain object
+                const data = Object.fromEntries(formData.entries());
+
+                // Show confirmation before updating
+                const result = await Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you want to update this product?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, update it!'
+                });
+
+
+                if (result.isConfirmed) {
+                    try {
+                        const res = await fetch(`http://localhost:8000/api/products/update-product/${productId}`, {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(data),
+                        });
+
+                        const result = await res.json();
+
+                        if (res.ok) {
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Product updated successfully!',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: true
+                            });
+
+
+                            // redirect after 2 seconds
+                            setTimeout(() => {
+                                window.location.href = 'http://127.0.0.1:5500/components/controllers/products.html';
+                            }, 2000);
+                            // Optionally, refresh the product table here
+                        } else {
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'error',
+                                title: result.message || 'Failed to update product',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: true
+                            });
+                            console.error(result);
+                        }
+                    } catch (err) {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Server error!',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: true
+                        });
+                    }
+                }
+
+                // You can now send `data` via fetch/axios to your API
+            });
+
+        });
+    </script>
+
+
+    <script>
+        const logoutLink = document.getElementById('logoutLink');
+
+        if (logoutLink) {
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault(); // prevent default link behavior
+
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You will be logged out!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, logout!'
+                })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            // Clear storage
+                            localStorage.removeItem("user");
+                            sessionStorage.clear();
+
+                            Swal.fire(
+                                'Logged out!',
+                                'See you next time!',
+                                'success'
+                            ).then(() => {
+                                location.reload(); // Refresh page
+                                window.location.href = "/pages/home.html"; // Redirect to home page
+                            });
+                        }
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

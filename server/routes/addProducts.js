@@ -1,5 +1,5 @@
 import express from "express";
-import Product from "../models/AddProduct.js";
+import MProduct from "../models/Products.js";
 
 const router = express.Router();
 
@@ -15,9 +15,9 @@ router.get("/:category", async (req, res) => {
 });
 
 // Add new product
-router.post("/", async (req, res) => {
+router.post("/add-product", async (req, res) => {
   try {
-    const product = new Product(req.body);
+    const product = new MProduct(req.body);
     await product.save();
     res.status(201).json(product);
   } catch (err) {
