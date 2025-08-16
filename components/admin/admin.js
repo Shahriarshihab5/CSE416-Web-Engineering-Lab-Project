@@ -69,8 +69,74 @@ const loadUsers = async () => {
     // Update stats
     document.getElementById("totalUsers").innerText = users.length;
     document.getElementById("totalOrders").innerText = 0; 
-    document.getElementById("totalRevenue").innerText = "$0.00"; 
+    document.getElementById("totalRevenue").innerText = "0.00 Tk"; 
 };
 
 // Run on page load
 document.addEventListener("DOMContentLoaded", loadUsers);
+
+const addProductForm = document.getElementById("addProductForm");
+const msg = document.getElementById("msg");
+
+addProductForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Gather form data
+  const type = document.getElementById("productType").value;
+  const animal = document.getElementById("productAnimal").value.trim();
+  const name = document.getElementById("productName").value.trim();
+  const price = parseFloat(document.getElementById("productPrice").value);
+  const image = document.getElementById("productImage").value.trim();
+  const desc = document.getElementById("productDesc").value.trim();
+
+  if (!animal || !name || isNaN(price)) {
+    Swal.fire({
+      icon: "error",
+      title: "Invalid Input",
+      text: "Please fill all required fields correctly."
+    });
+    return;
+  }
+
+  // Prepare payload
+  const payload = { type, animal, name, price };
+  if (type === "food") payload.image = image;
+  if (type === "medicine") {
+    payload.img = image;
+    payload.desc = desc;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/add-products/add-product", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      Swal.fire({
+        icon: "success",
+        title: "Product Added",
+        text: `${name} has been added successfully!`
+      });
+
+      // Reset form
+      addProductForm.reset();
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: data.message || "Something went wrong."
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    Swal.fire({
+      icon: "error",
+      title: "Server Error",
+      text: "Could not connect to the server."
+    });
+  }
+});
