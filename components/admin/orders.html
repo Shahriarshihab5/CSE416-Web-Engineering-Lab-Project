@@ -21,10 +21,10 @@
             </a>
         </div>
         <nav id="nav-links">
-            <a href="/components/admin/admin.html" class="active">Dashboard</a>
+            <a href="/components/admin/admin.html">Dashboard</a>
             <a href="/components/admin/user.html">Users</a>
             <a href="/components/controllers/products.html">Products</a>
-            <a href="/components/admin/orders.html">Orders</a>
+            <a href="/components/admin/orders.html" class="active">Orders</a>
             <a href="/components/controllers/products/addProduct.html">Add Products</a>
             <a href="#">Settings</a>
             <a href="#" id="logoutLink">Logout</a>
@@ -34,14 +34,11 @@
     <!-- Main Content -->
     <main>
         <header>
-            <h1>Dashboard</h1> <input type="search" placeholder="Search...">
+            <h1>Dashboard</h1>
         </header>
 
         <section class="cards">
-            <div class="card">
-                <h3>Total Users</h3>
-                <p id="totalUsers">0</p>
-            </div>
+
             <div class="card">
                 <h3>Total Orders</h3>
                 <p id="totalOrders">0</p>
@@ -53,25 +50,13 @@
         </section>
 
         <section class="table-section">
-            <h2>Recent Users</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-
-                    </tr>
-                </thead>
-                <tbody id="userTable">
-                    <!-- Data will be inserted here -->
-                </tbody>
-            </table>
+            <h2>Order List</h2>
+            <div id="order-list"></div>
         </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="/components/admin/admin.js"></script>
-   
 
 
 
@@ -110,54 +95,77 @@
         }
     </script>
 
-
- <script>
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             const totalOrdersEl = document.getElementById("totalOrders");
             const totalRevenueEl = document.getElementById("totalRevenue");
+            const orderList = document.getElementById("order-list");
 
             // show loading initially
             if (totalOrdersEl) totalOrdersEl.textContent = "Loading...";
             if (totalRevenueEl) totalRevenueEl.textContent = "Loading...";
+            if (orderList) orderList.innerHTML = "<p>Loading orders...</p>";
 
             async function fetchOrderInfo() {
                 try {
                     const res = await fetch("http://localhost:8000/api/order/get-order-info");
-
-                    if (!res.ok) {
-                        throw new Error(`HTTP error! Status: ${res.status}`);
-                    }
+                    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
                     const data = await res.json();
-                   
 
                     if (data.success) {
-                        if (totalOrdersEl) {
-                            totalOrdersEl.textContent = data.totalOrders;
-                        }
-                        if (totalRevenueEl) {
-                            totalRevenueEl.textContent = data.totalAmount + " Tk";
-                        }
+                        if (totalOrdersEl) totalOrdersEl.textContent = data.totalOrders;
+                        if (totalRevenueEl) totalRevenueEl.textContent = data.totalAmount + " Tk";
+
+                        // Clear previous orders
+                        if (orderList) orderList.innerHTML = "";
+
+                        data.orders.forEach(order => {
+                            const orderEl = document.createElement("div");
+                            orderEl.className = "order-item";
+                            orderEl.style.border = "1px solid #ccc";
+                            orderEl.style.padding = "10px";
+                            orderEl.style.marginBottom = "10px";
+                            orderEl.style.borderRadius = "5px";
+
+                            const orderDate = new Date(order.createdAt).toLocaleString();
+
+                            const productsHTML = order.products.map(p => {
+                                return `
+                            <li style="display:flex; align-items:center; gap:10px;">
+                                <img src="${p.image || 'placeholder.jpg'}" alt="${p.name}" width="50" style="border-radius:5px;">
+                                <span>${p.name} x ${p.quantity} - ${p.price} Tk</span>
+                            </li>
+                        `;
+                            }).join("");
+
+                            orderEl.innerHTML = `
+                        <h4>Order ID: ${order._id}</h4>
+                        <p><strong>Customer:</strong> ${order.customer.name} (${order.customer.email})</p>
+                        <p><strong>Date:</strong> ${orderDate}</p>
+                        <p><strong>Total Amount:</strong> ${order.totalAmount} Tk</p>
+                        <ul style="list-style:none; padding-left:0; " class="ul-style">${productsHTML}</ul>
+                    `;
+
+                            orderList.appendChild(orderEl);
+                        });
+
                     } else {
-                        if (totalOrdersEl) totalOrdersEl.textContent = "Error";
-                        if (totalRevenueEl) totalRevenueEl.textContent = "Error";
+                        if (orderList) orderList.innerHTML = "<p>No orders found.</p>";
                         console.error("Failed to fetch order info:", data.message || "Unknown error");
                     }
+
                 } catch (err) {
-                    if (totalOrdersEl) totalOrdersEl.textContent = "Error";
-                    if (totalRevenueEl) totalRevenueEl.textContent = "Error";
+                    if (orderList) orderList.innerHTML = "<p>Error fetching orders.</p>";
                     console.error("Error fetching order info:", err.message);
                 }
             }
 
-            // Call once on page load
             fetchOrderInfo();
-
-            // 🔄 Optional: auto-refresh every 10s so UI always syncs
-            setInterval(fetchOrderInfo, 1000);
-            
+            setInterval(fetchOrderInfo, 10000); // auto-refresh every 10s
         });
     </script>
+
 
 </body>
 

@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init
   if (user && user.email) {
     updateNavbar(true, user.email);
-    setupInactivityLogout(20 * 60 * 1); // 20 minutes
+    setupInactivityLogout(20 * 60 * 1000); // 20 minutes
   } else {
     updateNavbar(false);
   }
