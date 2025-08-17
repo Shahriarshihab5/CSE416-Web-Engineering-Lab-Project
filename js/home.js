@@ -9,12 +9,12 @@ const pets = [
     image: "/assets/057c756e8344b2a85291bffccc5b788c.webp"
   },
   {
-    name: "Mister Tartosh",
+    name: "Mister",
     type: "dog",
     breed: "Golden Retriever",
     year: 2024,
     gender: "Female",
-    price: 199,
+    price: 250,
     image: "/assets/cute-dog-breeds-we-can-t-get-enough-of-4589340-18-d7d08269a41249d180fd1e0a249c6fcb.webp"
   },
   {
@@ -41,16 +41,16 @@ const pets = [
     breed: "Persian Cat",
     year: 2023,
     gender: "Male",
-    price: 99,
+    price: 199,
     image: "/assets/worlds-most-beautiful-cats-111-57fe26438b6c7__700.webp"
   },
   {
-    name: "Mister Tartosh",
+    name: "Tartosh",
     type: "dog",
     breed: "Golden Retriever",
     year: 2024,
     gender: "Female",
-    price: 199,
+    price: 150,
     image: "/assets/white-bully-kutta-stands-outside.webp"
   }
 ];
