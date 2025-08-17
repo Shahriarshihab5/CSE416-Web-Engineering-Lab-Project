@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <style>
+    /* Basic reset and body styling */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Profile card */
+    .profile-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .profile-card h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .profile-info {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .profile-info div {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 10px;
+      background: #f9fafb;
+      border-radius: 8px;
+    }
+
+    .profile-info span.label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    .profile-info span.value {
+      color: #111;
+    }
+
+    .logout-btn {
+      background: #e53e3e;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .logout-btn:hover {
+      background: #c53030;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <h2>User Profile</h2>
+    <div class="profile-info">
+      <div>
+        <span class="label">Name:</span>
+        <span id="profileName" class="value">Loading...</span>
+      </div>
+      <div>
+        <span class="label">Email:</span>
+        <span id="profileEmail" class="value">Loading...</span>
+      </div>
+    </div>
+    <button id="logoutBtn" class="logout-btn">Log Out</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const profileName = document.getElementById("profileName");
+      const profileEmail = document.getElementById("profileEmail");
+      const logoutBtn = document.getElementById("logoutBtn");
+
+      if (user && user.name && user.email) {
+        profileName.textContent = user.name;
+        profileEmail.textContent = user.email;
+      } else {
+        profileName.textContent = "Guest";
+        profileEmail.textContent = "Not logged in";
+      }
+
+      logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("user");
+        sessionStorage.clear();
+        window.location.href = "/pages/home.html"; // redirect after logout
+      });
+    });
+  </script>
+</body>
+</html>

@@ -38,6 +38,7 @@ app.use("/api/add-products", addProductsRoutes);
 app.use("/api/add-medicines", addMedicinesRoutes);
 app.use("/api/order", ordersRoutes);
 
+
 // Default route
 app.get("/", (req, res) => {
   res.send("API is running");

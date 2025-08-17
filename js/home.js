@@ -1,6 +1,6 @@
 const pets = [
   {
-    name: "Mister Tartosh",
+    name: "Bee",
     type: "dog",
     breed: "Golden Retriever",
     year: 2024,
@@ -9,7 +9,7 @@ const pets = [
     image: "/assets/057c756e8344b2a85291bffccc5b788c.webp"
   },
   {
-    name: "Mister Tartosh",
+    name: "Mister Tintikles",
     type: "dog",
     breed: "Golden Retriever",
     year: 2024,
@@ -18,7 +18,7 @@ const pets = [
     image: "/assets/cute-dog-breeds-we-can-t-get-enough-of-4589340-18-d7d08269a41249d180fd1e0a249c6fcb.webp"
   },
   {
-    name: "Whiskers",
+    name: "Linda",
     type: "cat",
     breed: "Persian Cat",
     year: 2023,
