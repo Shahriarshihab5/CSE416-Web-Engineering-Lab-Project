@@ -199,3 +199,8 @@ select:focus {
 #nav-links {
     margin-top: 32px;
 }
+
+.ul-style{
+    display: flex;
+    justify-content: space-around;
+}

@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
       logoutLink.removeAttribute('href');
       logoutLink.onclick = (e) => {
         e.preventDefault();
-        logoutUser();
+        logoutUser(true); // manual logout
       };
 
-      //  add a dashabord link if the user is admin
+      // Add a dashboard link if the user is admin
       if (userEmail === "admin@gmail.com") {
         const dashboardLink = document.createElement('a');
         dashboardLink.href = "http://127.0.0.1:5500/components/admin/admin.html#";
@@ -36,73 +36,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function logoutUser() {
-    if (!isLoggedIn) return; // prevent multiple alerts
+  function logoutUser(manual = false) {
+    if (!isLoggedIn) return; // prevent multiple logouts
+    clearTimeout(inactivityTimer);
 
-      clearTimeout(inactivityTimer); // stop the timer
-    
-   
+    const doLogout = () => {
+      localStorage.removeItem('user');
+      sessionStorage.clear();
+      updateNavbar(false);
+      if (manual) {
+        Swal.fire(
+          'Logged out!',
+          'See you next time!',
+          'success'
+        ).then(() => {
+          window.location.href = "/pages/home.html";
+        });
+      } else {
+        // Silent logout: redirect without SweetAlert
+        window.location.href = "/pages/home.html";
+      }
+    };
 
+    if (manual) {
       Swal.fire({
-          title: 'Are you sure?',
-          text: "You will be logged out!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Yes, logout!'
-      })
-      .then((result) => {
-          if (result.isConfirmed) {
-            // Clear storage
-            localStorage.removeItem('user');
-            sessionStorage.clear();
-            updateNavbar(false);
-
-            Swal.fire(
-                'Logged out!',
-                'See you next time!',
-                'success'
-            ).then(() => {
-                location.reload(); // Refresh page
-                window.location.href = "/pages/home.html"; // Redirect to home page
-            });
-          }
+        title: 'Are you sure?',
+        text: "You will be logged out!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, logout!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          doLogout();
+        }
       });
-    
+    } else {
+      doLogout(); // automatic logout
+    }
   }
 
   function setupInactivityLogout(timeout) {
     const resetTimer = () => {
-      if (!isLoggedIn) return; // only reset if logged in
+      if (!isLoggedIn) return;
       clearTimeout(inactivityTimer);
-      inactivityTimer = setTimeout(logoutUser, timeout);
+      inactivityTimer = setTimeout(() => logoutUser(false), timeout);
     };
     ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(event =>
       document.addEventListener(event, resetTimer)
     );
     resetTimer();
-  }
-
-  function showToast(message) {
-    const toast = document.createElement("div");
-    toast.textContent = message;
-    toast.style.position = "fixed";
-    toast.style.bottom = "20px";
-    toast.style.right = "20px";
-    toast.style.background = "#333";
-    toast.style.color = "#fff";
-    toast.style.padding = "10px 20px";
-    toast.style.borderRadius = "5px";
-    toast.style.zIndex = "9999";
-    toast.style.opacity = "0";
-    toast.style.transition = "opacity 0.5s";
-
-    document.body.appendChild(toast);
-    requestAnimationFrame(() => toast.style.opacity = "1");
-
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      setTimeout(() => toast.remove(), 500);
-    }, 3000);
   }
 
   // Init

@@ -19,4 +19,32 @@ router.post("/create-order", async (req, res) => {
   }
 });
 
+
+// Get order summary (total orders + revenue)
+router.get("/get-order-info", async (req, res) => {
+  try {
+    // Fetch all orders
+    const orders = await MOrder.find();
+
+    // Count total orders
+    const totalOrders = orders.length;
+
+    // Sum all order amounts (assuming each order has a `totalAmount` field)
+    const totalAmount = orders.reduce((sum, order) => sum + (order.totalAmount || 0), 0);
+
+    res.json({
+      success: true,
+      totalOrders,
+      totalAmount,
+      orders
+    });
+  } catch (error) {
+    console.error("Error fetching order info:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error while fetching order info",
+    });
+  }
+});
+
 export default router;
